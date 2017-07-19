@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [ -z $OS_AUTH_URL ]
+then
+  echo "Could not find Openstack creds. Did you forget to source your Openstack rc file? Exiting."
+  exit 1
+fi
+
+servername="${LOGNAME}_`openssl rand -hex 2`"
+image=32bf80f9-7368-4b05-97b5-2e8fff0f6e80
+network=22e09cce-fce0-4163-af78-b7cd7d72db9b
+flavor=m1.medium
+
+cmd="openstack server create --nic net-id=$network --key-name $LOGNAME --image $image --flavor $flavor $servername"
+echo "Running:"
+echo "  $cmd"
+$cmd
+
+

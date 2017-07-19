@@ -1,0 +1,125 @@
+---
+# tasks file for jupyter
+
+# common stuff
+
+- name: Install prerequisite packages
+  become: true
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - crudini
+
+- name: Download anaconda installer
+  get_url: 
+    url: "https://repo.continuum.io/archive/{{ anafile }}"
+    dest: "{{ ansible_env.HOME }}/{{ anafile }}"
+    checksum: "md5:{{ anamd5sum }}"
+
+- name: Install anaconda and jupyter
+  shell: "bash {{ anafile }} -b"
+  args: 
+    creates: "{{ ansible_env.HOME }}/anaconda3"
+
+- name: Add Anaconda to bashrc
+  lineinfile:
+    state: present
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    regexp: '^export.*anaconda3.*PATH$'
+    line: "export PATH={{ ansible_env.HOME }}/anaconda3/bin:$PATH" 
+
+- name: Install dask distributed
+  command: "./conda install dask distributed -y"
+  args:
+    chdir: "{{ ansible_env.HOME }}/anaconda3/bin"
+    creates: "{{ ansible_env.HOME }}/anaconda3/lib/python3.6/site-packages/dask"
+
+- name: Install ipythonparallel
+  command: "./conda install ipyparallel -y"
+  args:
+    chdir: "{{ ansible_env.HOME }}/anaconda3/bin"
+    creates: "{{ ansible_env.HOME }}/anaconda3/lib/python3.6/site-packages/ipyparallel"
+
+
+- name: Ensure var jpassword is defined
+  fail: msg="Bailing out. Please define 'jpassword' var."
+  when: jpassword is undefined
+
+- name: Generate self-signed cert
+  shell: "openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycert.pem -batch"
+  args: 
+    creates: "{{ ansible_env.HOME }}/mykey.key"
+
+- name: Generate jupyter config
+  shell: "{{ ansible_env.HOME }}/anaconda3/bin/jupyter notebook --generate-config"
+  args: 
+    creates: "{{ ansible_env.HOME }}/.jupyter/jupyter_notebook_config.py"
+
+- name: Generate jupyter password
+  shell: "PYTHONPATH={{ ansible_env.HOME }}/anaconda3/lib/python3.6/site-packages python -c 'from notebook.auth import passwd; print passwd(\"{{ jpassword }}\")'"
+  register: jpasswordhash
+
+- name: Modify jupyter config
+  command: "{{ item }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}"
+  with_items:
+  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.certfile u\'{{ ansible_env.HOME }}/mycert.pem\'
+  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.ip \'*\'
+  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.keyfile u\'{{ ansible_env.HOME }}/mykey.key\'
+  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.notebook_dir u\'$HOME/notebook\'
+  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.open_browser False
+  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.port {{ jport }}
+  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.password u\'{{ jpasswordhash.stdout }}\'
+
+# master only
+- name: Create notebook directory
+  when: inventory_hostname in groups['master']
+  file:
+    path: "{{ notebookdir }}"
+    state: directory
+
+# master only
+- name: Dask scheduler startup script
+  when: inventory_hostname in groups['master']
+  become: true
+  template:
+    src: dask-scheduler.service.j2
+    dest: /etc/systemd/system/dask-scheduler.service
+
+# master only
+- name: Dask scheduler service
+  when: inventory_hostname in groups['master']
+  become: true
+  service:
+    name: dask-scheduler
+    state: started
+    enabled: yes
+
+- name: Dask worker startup script
+  become: true
+  template:
+    src: dask-worker.service.j2
+    dest: /etc/systemd/system/dask-worker.service
+
+- name: Dask worker service
+  become: true
+  service:
+    name: dask-worker
+    state: started
+    enabled: yes
+
+# master only
+- name: Connection info
+  when: inventory_hostname in groups['master']
+  debug: 
+    msg: 
+      - "*** Jupyter Notebook installed. Launch by re-sourcing your .bashrc and running the notebook: ***"
+      - "*** source ~/.bashrc ***"
+      - "*** {{ ansible_env.HOME }}/anaconda3/bin/jupyter notebook ***"
+      - "*** Then point your browser at: ***"
+      - "*** https://{{ inventory_hostname }}:{{ jport }} ***"
+
+
+
+

@@ -1,0 +1,11 @@
+[Unit]
+Description=Dask Worker
+
+[Service]
+Type=simple
+ExecStart={{ ansible_env.HOME }}/anaconda3/bin/dask-worker 172.23.35.14:8786
+After=network.target
+User={{ ansible_user_id }}
+
+[Install]
+WantedBy=multi-user.target

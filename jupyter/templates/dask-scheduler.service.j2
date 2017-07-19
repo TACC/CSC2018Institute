@@ -1,0 +1,11 @@
+[Unit]
+Description=Dask Scheduler
+
+[Service]
+Type=simple
+ExecStart={{ ansible_env.HOME }}/anaconda3/bin/dask-scheduler
+After=network.target
+User={{ ansible_user_id }}
+
+[Install]
+WantedBy=multi-user.target

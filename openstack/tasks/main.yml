@@ -1,0 +1,15 @@
+---
+# tasks file for openstack
+
+- name: Install Openstack client 
+  become: true
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present update_cache=yes
+  with_items:
+    - python-openstackclient
+
+- name: Openstack instance launch script
+  template:
+    src: instance.j2
+    dest: {{ ansible_env.HOME }}/instance
+

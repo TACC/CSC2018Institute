@@ -1,0 +1,8 @@
+---
+# vars file for jupyter
+
+anafile: Anaconda3-4.4.0-Linux-x86_64.sh
+anamd5sum: 50f19b935dae7361978a04d9c7c355cd
+notebookdir: "{{ ansible_env.HOME }}/notebook"
+jport: 8887
+
