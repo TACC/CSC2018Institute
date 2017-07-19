@@ -60,23 +60,25 @@
   args: 
     creates: "{{ ansible_env.HOME }}/.jupyter/jupyter_notebook_config.py"
 
+# master only
 - name: Generate jupyter password
-  shell: "PYTHONPATH={{ ansible_env.HOME }}/anaconda3/lib/python3.6/site-packages python -c 'from notebook.auth import passwd; print passwd(\"{{ jpassword }}\")'"
+  shell: "PYTHONPATH={{ ansible_env.HOME }}/anaconda3/lib/python3.6/site-packages python -c 'from notebook.auth import passwd; print(passwd(\"{{ jpassword }}\"))'"
   register: jpasswordhash
 
 - name: Modify jupyter config
+  become: true
   command: "{{ item }}"
   args:
     chdir: "{{ ansible_env.HOME }}"
   with_items:
-  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.certfile u\'{{ ansible_env.HOME }}/mycert.pem\'
-  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.ip \'*\'
-  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.keyfile u\'{{ ansible_env.HOME }}/mykey.key\'
-  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.notebook_dir u\'$HOME/notebook\'
-  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.open_browser False
-  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.port {{ jport }}
-  - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.password u\'{{ jpasswordhash.stdout }}\'
-
+    - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.certfile u\'{{ ansible_env.HOME }}/mycert.pem\'
+    - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.ip \'*\'
+    - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.keyfile u\'{{ ansible_env.HOME }}/mykey.key\'
+    - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.notebook_dir u\'$HOME/notebook\'
+    - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.open_browser False
+    - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.port {{ jport }}
+    - crudini --set .jupyter/jupyter_notebook_config.py '' c.NotebookApp.password u\'{{ jpasswordhash.stdout }}\'
+  
 # master only
 - name: Create notebook directory
   when: inventory_hostname in groups['master']
@@ -123,7 +125,7 @@
       - "*** source ~/.bash_profile ***"
       - "*** {{ ansible_env.HOME }}/anaconda3/bin/jupyter notebook ***"
       - "*** Then point your browser at: ***"
-      - "*** https://{{ inventory_hostname }}:{{ jport }} ***"
+      - "*** https://YOUR_PUBLIC_IP:{{ jport }} ***"
 
 
 
