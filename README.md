@@ -38,7 +38,7 @@ At the end you should receive a message like this:
 
     "*** Jupyter Notebook installed. Launch by re-sourcing your .bashrc and running the notebook: ***", 
     "*** source ~/.bashrc ***",
-    "*** jupyter notebook ***", 
+    "*** jupyter notebook --allow-root ***", 
     "*** Then point your browser at: ***", 
     "*** https://129.114.104.8:8887 ***"
 
