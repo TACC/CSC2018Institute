@@ -21,10 +21,15 @@
   args: 
     creates: "{{ ansible_env.HOME }}/anaconda3"
 
-- name: Add Anaconda to bashrc
+- name: Create bash_profile
+  file:
+    path: "{{ ansible_env.HOME }}/.bash_profile"
+    state: touch
+
+- name: Add Anaconda to bash_profile
   lineinfile:
     state: present
-    path: "{{ ansible_env.HOME }}/.bashrc"
+    path: "{{ ansible_env.HOME }}/.bash_profile"
     regexp: '^export.*anaconda3.*PATH$'
     line: "export PATH={{ ansible_env.HOME }}/anaconda3/bin:$PATH" 
 
@@ -51,7 +56,7 @@
     creates: "{{ ansible_env.HOME }}/mykey.key"
 
 - name: Generate jupyter config
-  shell: "{{ ansible_env.HOME }}/anaconda3/bin/jupyter notebook --generate-config"
+  shell: "{{ ansible_env.HOME }}/anaconda3/bin/jupyter notebook --generate-config --allow-root"
   args: 
     creates: "{{ ansible_env.HOME }}/.jupyter/jupyter_notebook_config.py"
 
@@ -114,8 +119,8 @@
   when: inventory_hostname in groups['master']
   debug: 
     msg: 
-      - "*** Jupyter Notebook installed. Launch by re-sourcing your .bashrc and running the notebook: ***"
-      - "*** source ~/.bashrc ***"
+      - "*** Jupyter Notebook installed. Launch by re-sourcing your .bash_profile and running the notebook: ***"
+      - "*** source ~/.bash_profile ***"
       - "*** {{ ansible_env.HOME }}/anaconda3/bin/jupyter notebook ***"
       - "*** Then point your browser at: ***"
       - "*** https://{{ inventory_hostname }}:{{ jport }} ***"

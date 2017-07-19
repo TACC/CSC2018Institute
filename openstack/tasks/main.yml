@@ -11,5 +11,5 @@
 - name: Openstack instance launch script
   template:
     src: instance.j2
-    dest: {{ ansible_env.HOME }}/instance
+    dest: "{{ ansible_env.HOME }}/instance"
 
