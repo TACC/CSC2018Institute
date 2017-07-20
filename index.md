@@ -25,11 +25,11 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 |--------|--------------------------------------------------|
 |  8:30 - 10:00 | [Welcome](docs/day1/welcome.md) and [Introduction to Cloud Concepts](docs/day1/cloud_concepts.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Introduction to High Performance Computing](docs/intro_to_hpc/intro_to_hpc_01.md) |
+| 10:15 - 11:45 | [Hands-on: Virtual Machine Construction using Jetstream/Horizon](labs/day1/virtual_machines.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Useful Command Line Utilities](docs/gnu_utils/gnu_utils_01.md) |
+| 13:00 - 14:30 | [Jupyter Crash Course](docs/day1/jupyter.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 17:00 | [Hands-on Exercises & Bring-your-own-code Workshop](docs/hands_on_01.md) |
+| 14:45 - 16:15 | [Jupyter Crash Course (cont)](docs/day1/jupyter.md) |
 
 ### Tuesday
 
