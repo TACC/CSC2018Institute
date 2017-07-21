@@ -35,45 +35,45 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [HPC Software Environment Part 1](docs/hpc_software_environment/hpc_software_environment_01.md) |
+|  8:30 - 10:00 | [Application Programming Interfaces](docs/day2/apis.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [HPC Software Environment Part 2](docs/hpc_software_environment/hpc_software_environment_01.md) |
+| 10:15 - 11:45 | [Hands-on: APIs](labs/day2/apis.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Data Management and Collaboration](docs/data_management/data_management.md) |
+| 13:00 - 14:30 | [Using Cloud Storage](docs/day2/storage.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 17:00 | [Hands-on Exercises & Bring-your-own-code Workshop](docs/hands_on_02.md) |
+| 14:45 - 16:15 | [Hands-on: Storage](labs/day2/storage.md) |
 
 ### Wednesday
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Developing Life Sciences Workflows Part 1](docs/workflows/workflows1_1.md) |
+|  8:30 - 10:00 | [Automated Deployment Tools](docs/day3/deployment_tools.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Developing Life Sciences Workflows Part 2](docs/LSworflow2_JWS.md) |
+| 10:15 - 11:45 | [Hands-on: Deployment Tools](labs/day3/deployment_tools.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Optimization and Parallelization of Workflows for HPC](docs/optimization_parallelization/optimization_parallelization_01.md) |
+| 13:00 - 14:30 | [Using Python Pandas](docs/day3/pandas.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 17:00 | Hands-on Exercises & Bring-your-own-code Workshop |
+| 14:45 - 16:15 | [Hands-on: Pandas](labs/day3/pandas.md) |
 
 ### Thursday
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Python for Research Computing Part 1](docs/intro_to_python/intro_to_python.md) |
+|  8:30 - 10:00 | [Distributed Analysis with Dask](docs/day4/dask.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Python for Research Computing Part 2](docs/intro_to_python/intro_to_python.md) |
+| 10:15 - 11:45 | [Hands-on: Dask](labs/day4/dask.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Python for Research Computing Part 3](docs/intro_to_python/intro_to_python.md) |
+| 13:00 - 14:30 | [Agave](docs/day4/agave.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 17:00 | [Hands-on Exercises & Bring-your-own-code Workshop](docs/intro_to_python/intro_to_python.md) |
+| 14:45 - 16:15 | [Hands-on: Agave](labs/day4/agave.md) |
 
 ### Friday
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | Invited Talk: Dr. Claus Wilke, UT Austin |
+|  8:30 - 10:00 | [Containers](docs/day5/containers.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | Next Steps |
+| 10:15 - 11:45 | [Wrap-up & Closing](docs/day5/wrap-up.md) |
 | 11:45 - 13:00 | Lunch |
 
 
