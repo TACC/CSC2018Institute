@@ -23,57 +23,57 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Welcome](docs/day1/welcome.md) and [Introduction to Cloud Concepts](docs/day1/cloud_concepts.md) |
+|  8:30 - 10:00 | [Welcome](docs/welcome.md) and [Introduction to Cloud Concepts](docs/cloud_concepts.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Hands-on: Virtual Machine Construction using Jetstream/Horizon](labs/day1/virtual_machines.md) |
+| 10:15 - 11:45 | [Hands-on: Virtual Machine Construction using Jetstream/Horizon](labs/virtual_machines.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Jupyter Crash Course](docs/day1/jupyter.md) |
+| 13:00 - 14:30 | [Jupyter Crash Course](docs/jupyter.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Jupyter Crash Course (cont)](docs/day1/jupyter.md) |
+| 14:45 - 16:15 | [Jupyter Crash Course (cont)](docs/jupyter.md) |
 
 ### Tuesday
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Application Programming Interfaces](docs/day2/apis.md) |
+|  8:30 - 10:00 | [Application Programming Interfaces](docs/apis.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Hands-on: APIs](labs/day2/apis.md) |
+| 10:15 - 11:45 | [Hands-on: Using the GitHub API](labs/apis.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Using Cloud Storage](docs/day2/storage.md) |
+| 13:00 - 14:30 | [Authentication in HTTP and the Agave API](docs/agave.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Hands-on: Storage](labs/day2/storage.md) |
+| 14:45 - 16:15 | [Hands-on: Using Agave to Store/Retrieve Files](labs/agave.md) |
 
 ### Wednesday
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Automated Deployment Tools](docs/day3/deployment_tools.md) |
+|  8:30 - 10:00 | [Data Ingestion and Manipulation in Pandas](docs/pandas.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Hands-on: Deployment Tools](labs/day3/deployment_tools.md) |
+| 10:15 - 11:45 | [Hands-on: Pandas](labs/pandas.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Using Python Pandas](docs/day3/pandas.md) |
+| 13:00 - 14:30 | [Introduction to Ansible](docs/ansible.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Hands-on: Pandas](labs/day3/pandas.md) |
+| 14:45 - 16:15 | [Hands-on: Automating VM Deployment](labs/ansible.md) |
 
 ### Thursday
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Distributed Analysis with Dask](docs/day4/dask.md) |
+|  8:30 - 10:00 | [Dask Distrbuted and Automating a Virtual Cluster with Anisble](docs/dask_ansible.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Hands-on: Dask](labs/day4/dask.md) |
+| 10:15 - 11:45 | [Hands-on: Using Ansible to Build a Virtual Cluster](labs/dask_ansible.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Agave](docs/day4/agave.md) |
+| 13:00 - 14:30 | [Data Analysis with Dask DataFrames](docs/dask.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Hands-on: Agave](labs/day4/agave.md) |
+| 14:45 - 16:15 | [Hands-on: Exploring the StackOverflow CSV with Dask](labs/dask.md) |
 
 ### Friday
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Containers](docs/day5/containers.md) |
+|  8:30 - 10:00 | [Additional Topics](docs/extra_topics.md) and [Cloud@TACC](docs/cloud_tacc.md)|
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Wrap-up & Closing](docs/day5/wrap-up.md) |
+| 10:15 - 11:45 | [Wrap-up & Closing](docs/wrap_up.md) |
 | 11:45 - 13:00 | Lunch |
 
 
