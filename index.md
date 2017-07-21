@@ -71,9 +71,9 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Additional Topics](docs/extra_topics.md) and [Cloud@TACC](docs/cloud_tacc.md)|
+|  8:30 - 10:00 | [Additional Topics](docs/extra_topics.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Wrap-up & Closing](docs/wrap_up.md) |
+| 10:15 - 11:45 | [Cloud@TACC](docs/cloud_tacc.md) and [Wrap-up & Closing](docs/wrap_up.md) |
 | 11:45 - 13:00 | Lunch |
 
 
