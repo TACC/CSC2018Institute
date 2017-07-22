@@ -35,9 +35,9 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Application Programming Interfaces](docs/apis.md) |
+|  8:30 - 10:00 | [Application Programming Interfaces](docs/day2/APIs_intro.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Hands-on: Using the GitHub API](labs/apis.md) |
+| 10:15 - 11:45 | [Hands-on: Using the GitHub API](docs/day2/notebooks/REST_APIs_github_api.ipynb) |
 | 11:45 - 13:00 | Lunch |
 | 13:00 - 14:30 | [Authentication in HTTP and the Agave API](docs/agave.md) |
 | 14:30 - 14:45 | Break |
