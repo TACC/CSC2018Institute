@@ -23,9 +23,9 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Welcome](docs/welcome.md) and [Introduction to Cloud Concepts](docs/cloud_concepts.md) |
+|  8:30 - 10:00 | [Welcome](docs/day1/welcome_01.md) and [Introduction to Cloud Concepts](docs/day1/intro_cloud_computing.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Hands-on: Virtual Machine Construction using Jetstream/Horizon](labs/virtual_machines.md) |
+| 10:15 - 11:45 | [Command Line and Jupyter Installation](docs/day1/command_line_and_jupyter_install.md) |
 | 11:45 - 13:00 | Lunch |
 | 13:00 - 14:30 | [Jupyter Crash Course](docs/jupyter.md) |
 | 14:30 - 14:45 | Break |
