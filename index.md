@@ -51,7 +51,7 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 | 10:00 - 10:15 | Break |
 | 10:15 - 11:45 | [Hands-on: Pandas](labs/pandas.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Introduction to Ansible](docs/ansible.md) |
+| 13:00 - 14:30 | [Introduction to Ansible](docs/Intro_To_Ansible.md) |
 | 14:30 - 14:45 | Break |
 | 14:45 - 16:15 | [Hands-on: Automating VM Deployment](labs/ansible.md) |
 
