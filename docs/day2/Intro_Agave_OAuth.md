@@ -21,7 +21,7 @@ If you ever used a site that said "Log in with your Facebook or Google account" 
 
 Agave (https://agaveapi.co/) is an API platform developed here at TACC for conducting computational science experiments on HPC and cloud resources. 
 
-<center><img src="../resources/agave.png" style="height:300px;"></center>
+<center><img src="../../resources/agave.png" style="height:300px;"></center>
 
 We will introduce Agave towards two objectives:
   * Introduce OAuth at a basic level
