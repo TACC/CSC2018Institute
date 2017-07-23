@@ -39,7 +39,7 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 | 10:00 - 10:15 | Break |
 | 10:15 - 11:45 | [Introduction to HTTP Authentication](docs/day2/Intro_Authentication_in_HTTP.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Introduction to OAuth and the Agave API](docs/day2/Inrto_Agave_OAuth.md) |
+| 13:00 - 14:30 | [Introduction to OAuth and the Agave API](docs/day2/Intro_Agave_OAuth.md) |
 | 14:30 - 14:45 | Break |
 | 14:45 - 16:15 | [Using Agave to Store/Retrieve Files](docs/day2/agave_files.md) |
 
