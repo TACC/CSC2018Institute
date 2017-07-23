@@ -1,3 +1,13 @@
+### Introductions
+
+Instructors:
+  * Joe Stubbs - Research Associate, Team Lead for the Cloud and Interactive Computing group
+  * Charlie Dey - Research Engineering Scientist Associate, Training and Education Specialist.
+  * Greg Zynda - Research Associate, Life Sciences Computing.
+  * George Turner - Research Computing Architect, Indiana University.
+  * Josue Coronel - Portal Developer, Web and Mobile Applications.
+
+
 ### What is the Texas Advanced Computing Center?
 
 A little about us:
@@ -26,13 +36,3 @@ A little about us:
 
 
 <center><img src="../../resources/machines.png" style="height:300px;"></center>
-
-### Introductions
-
-Instructors:
-  * Joe Stubbs - Research Associate, Team Lead for the Cloud and Interactive Computing group
-  * Charlie Dey - Research Engineering Scientist Associate, Training and Education Specialist.
-  * Greg Zynda - Research Associate, Life Sciences Computing.
-  * George Turner - Research Computing Architect, Indiana University.
-  * Josue Coronel - Portal Developer, Web and Mobile Applications.
-

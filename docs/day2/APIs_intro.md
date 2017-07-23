@@ -79,7 +79,7 @@ response.json() -- for services returning JSON, create a Python list or dictiona
 ```
 
 
-Write code snippets in a notebook to:
+Let's explore the github API using the requests library in a Jupyter notebook. Along the way, let's be sure to write code snippets in the notebook to:
 ```
 1. retrieve a list of github users.
 2. retrieve details about a particular user.
