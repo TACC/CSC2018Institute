@@ -15,6 +15,7 @@ Windows:
 
 ```
   'PuTTY' application
+  'WinSCP application
   Chrome/Firefox web browser
 ```
 
