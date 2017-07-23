@@ -63,9 +63,9 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 | 10:00 - 10:15 | Break |
 | 10:15 - 11:45 | [Hands-on: Using Ansible to Build a Virtual Cluster](labs/dask_ansible.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Data Analysis with Dask DataFrames](docs/dask.md) |
+| 13:00 - 14:30 | [Introduction to Dask](docs/day4/Intro_to_Dask.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Hands-on: Exploring the StackOverflow CSV with Dask](labs/dask.md) |
+| 14:45 - 16:15 | [Analyzinf a Large CSV with Dask Distributed](docs/day4/Dask_Distributed.md) |
 
 ### Friday
 
