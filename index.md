@@ -39,7 +39,7 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 | 10:00 - 10:15 | Break |
 | 10:15 - 11:45 | [Hands-on: Using the GitHub API](docs/day2/notebooks/REST_APIs_github_api.ipynb) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Authentication in HTTP and the Agave API](docs/authn_http.md) |
+| 13:00 - 14:30 | [Authentication in HTTP and the Agave API](docs/day2/authn_http.md) |
 | 14:30 - 14:45 | Break |
 | 14:45 - 16:15 | [Hands-on: Using Agave to Store/Retrieve Files](labs/agave.md) |
 
