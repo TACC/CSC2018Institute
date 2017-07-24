@@ -27,9 +27,9 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 | 10:00 - 10:15 | Break |
 | 10:15 - 11:45 | [Command Line and Jupyter Installation](docs/day1/command_line_and_jupyter_install.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Jupyter Crash Course](docs/jupyter.md) |
+| 13:00 - 14:30 | [Jupyter Crash Course](docs/day1/jupyter.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Jupyter Crash Course (cont)](docs/jupyter.md) |
+| 14:45 - 16:15 | [Jupyter Crash Course (cont)](docs/day1/jupyter.md) |
 
 ### Tuesday
 
