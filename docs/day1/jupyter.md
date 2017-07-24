@@ -114,15 +114,15 @@ Remember: The magic number is 4!
 #### Hello World
 Let's type the following into a Code Cell:
 ```
-print “Hello World!”
+print(“Hello World!”)
 ```
 Hit Ctrl-Enter
 
 #### Some more quick examples
 Let's type the following into another Code Cell:
 ```
-print 5
-print 1+1
+print(5)
+print(1+1)
 ```
 Hit Ctrl-Enter
 
@@ -142,10 +142,10 @@ In a Code Cell:
 ```
 five = 5
 one = 1
-print five
-print one + one
+print(five)
+print(one + one)
 message = “This is a string”
-print message
+print(message)
 ```
 Note: we are not <i>typing</i> out variable, we are only setting them and allowing Python to determine the <i>type</i> for us
 
@@ -171,7 +171,7 @@ Just because we're not <i>typing</i> our data, doesn't mean that our data doesn'
 
 * You can check the type of a variable by using the type() function:
 ```
-print type(integer_variable)
+print(type(integer_variable))
 ```
 
 * It is also possible to change the type of some basic types:
@@ -198,19 +198,17 @@ Be careful: you can only convert data that actually makes sense to be transforme
 
 In a Code Cell:
 ```
-print 5/2
-print 5.0/2
-print "hello" + "world"
-print "some" + 1
-print "number" * 5
-print 3+5*2
+print(5/2)
+print(5.0/2)
+print("hello" + "world")
+print(3+5*2)
 ```
 
 #### Data Conversions
 
 ```
-number1 = 5.0/2
-number2 = 5/2
+number1 = (5.0/2)
+number2 = (5/2)
 ```
 what type() are they?
 ```
@@ -246,11 +244,11 @@ Put in <i>Hello</i> as your input
 #### Fomatted Output
 Making the output prettier
 ```
-print "The number that you wrote was : ", var
-print "The number that you wrote was : %d" % var
+print("The number that you wrote was : ", var)
+print("The number that you wrote was : %d" % var)
 
-print "the string you entered was: ", var2
-print "the string you entered was: %s" % var2
+print("the string you entered was: ", var2)
+print("the string you entered was: %s" % var2)
 ```
 
 FYI: 
@@ -280,7 +278,7 @@ In a Code Cell:
 ```
 my_file = open(“output_file.txt”,’r’)
 content = my_file.read()
-print content
+print(content)
 my_file.close()
 ```
 
@@ -301,9 +299,9 @@ my_file = open("output_file.txt",'r')
 vars = my_file.readline()
 var5 = my_file.readline()
 var6 = my_file.readline()
-print "String: ", vars
-print "Integer: ", var1
-print "Float: ", var2
+print("String: ", vars)
+print("Integer: ", var1)
+print("Float: ", var2)
 my_file.close()
 ```
 
@@ -314,9 +312,9 @@ with open("output_file.txt",'r') as f:
     vars = f.readline()
     var5 = f.readline()
     var6 = f.readline()
-    print "String: ", vars
-    print "Integer: ", var1
-    print "Float: ", var2
+    print("String: ", vars)
+    print("Integer: ", var1)
+    print("Float: ", var2)
 ```
 
 #### Control Flow
@@ -349,22 +347,34 @@ In a Code Cell:
 ```
 a = 2
 b = 5
-
+```
+```
 a>b
+```
+```
 a<b
+```
+```
 a == b
+```
+```
 a != b
+```
+```
 b>a or a==b
-b?a and a==b
+```
+```
+b>a and a==b
 ```
 
 #### if/else/elif an Example
 
 ```
-if var>10:
-    print "You entered a number greater than 10"
+var7 = int(var)
+if var7>10:
+    print("You entered a number greater than 10")
 else:
-    print "you entered a number less than 10"
+    print("you entered a number less than 10")
 
 ```
 
@@ -395,7 +405,7 @@ When we need to iterate, execute the same set of instructions over and over agai
 (remember the MAGIC NUMBER!   Hint: it's 4)
 ```
 for x in range(0, 3):
-    print "Let's go %d" % (x)
+    print("Let's go %d" % (x))
 ```
 
 #### nesting for loops
@@ -403,7 +413,7 @@ for x in range(0, 3):
 ```
 for x in range(0, 3):
     for y in range(0,5):
-       print "Let's go %d %d" % (x,y)
+       print("Let's go %d %d" % (x,y))
 ```
 
 #### Exercise 4
@@ -427,7 +437,7 @@ Sometimes we need to loop while a condition is true...
 ```
 i = 0    # Initialization
 while (i < 10):    # Condition
-    print i    # do_something
+    print(i)    # do_something
     i = i + 1 # Why do we need this?
 ```
 
@@ -440,22 +450,22 @@ while (i < 10):    # Condition
 mylist1 = [“first item”, “second item”]
 mylist2 = [1, 2, 3, 4]
 mylist3 = [“first”, “second”, 3]
-print mylist1[0], mylist1[1]
-print mylist2[0]
-print mylist3
-print mylist3[0], mylist3[1], mylist3[2]
-print mylist2[0] + mylist3[2]
+print(mylist1[0], mylist1[1])
+print(mylist2[0])
+print(mylist3)
+print(mylist3[0], mylist3[1], mylist3[2])
+print(mylist2[0] + mylist3[2])
 ```
 
 * We can also <i>slice</i> our data:
 ```
-    print mylist3[0:3]
-    print mylist3
+    print(mylist3[0:3])
+    print(mylist3)
 ```
 * To change the value of an element in a list, simply assign it a new value:
 ```
     mylist3[0] = 10
-    print mylist3
+    print(mylist3)
 ```
 
 * There’s a function that returns the number of elements in a list
@@ -470,12 +480,12 @@ print mylist2[0] + mylist3[2]
 ```
     len(mylist2)
     del mylist2[0]
-    print mylist2
+    print(mylist2)
 ```
 * Iterate over the elements of a list:
 ```
       for x in mylist2:
-          print x
+          print(x)
 ```
 
 #### Exercise 5
