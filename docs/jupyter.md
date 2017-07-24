@@ -1,79 +1,74 @@
-# Introduction to Cloud Computing
+# Welcome to Jupyter
 
 
-This module will be partially interactive. Please follow along on your own computer. After taking this module, participants should be able to:
+This is an interactive module. Please follow along on your own computer. After taking this module, participants should be able to:
 
- * Print, identify, and modify environment variables
- * List and search for available modules
- * Load and unload modules specific to a certain objective
- * Automate module and environment commands in the `.bashrc`
- * Prepare and submit a batch job to a queue
+ * Understand how Jupyter Notebooks are utilized
+ * Know how to navigate Notebooks
+ * Create a Python Notebook
+ * Learn the Basics of Coding in Python
+ * Learn the Basics of Numpy
+ * Do some Basic Plotting using Matplotlip
  
  
-### What is a cloud?
+### What are Jupyter Notebooks
 
-A "cloud" is a computer system that provides users with shared access to on-demand computing resources via the internet.
+A web-based, interactive computing tool for capturing the whole computation process: developing, documenting, and executing code, as well as communicating the results.
 
+<!--center><img src="../../resources/cloud.jpg" style="height:300px;"></center-->
 
-<center><img src="../../resources/cloud.jpg" style="height:300px;"></center>
+### How do Jupyter Notebooks Work?
 
+An open notebook has exactly one interactive session connected to a kernel which will execute code sent by the user and communicate back results. This kernel remains active if the web browser window is closed, and reopening the same notebook from the dashboard will reconnect the web application to the same kernel.
 
-#### Goals/Benefits
-  * Resource utilization
-  * Scalability and Elasticity 
-  * Reproducibility by way of Programmability
-  * Reliability through redundancy
-  
-
-### Cloud Means Different Things to Different Groups
-
-Different kinds of people use clouds for different purposes.
-  * System Administrators - use cloud to automate operations.
-  * Software Developers - build applications on cloud servers and platforms.
-  * Computational scientists - Write codes to analysis scientific data in the cloud.
-
-In this course we will try to exposure you to each of these views.
-
-### Cloud service models
-
-Clouds can offer different service models:
-  * Infrastructure-as-a-service (Iaas) - virtual servers, networks, firewalls, etc. (AWS, Azure)
-  * Platform-as-a-service (Paas) - deploy applications without managing virtual servers (Google App Engine, Heroku)
-  * Software-as-a-service (Saas) - Ready to use software application (Gmail, Office365)
-
-Also: emerging models such as functioni-as-a-service.
-
-### Infrastrcture-as-a-service
-
-Key concepts:
-  * Virtual Machines (VMs) - Simulate a physical computer through software.
-  * Software defined networking: Routers, networks and subnets - used to connect VMs to other computers.
-  * Security groups - firewall rules enabling or disabling network traffic to/from ports on the VMs.
-  
-### Hands on: Launching a VM on the JetStream cloud
-
-1. Navigate to the JetStream Horizon interface: https://tacc.jetstream-cloud.org
-2. Login with your tacc User Name and Password and enter "tacc" for the Domain.
-3. Make sure you see our Training project (TG-TRA170023) in the projects drop down at the top and select it if it is not already selected (check mark):
-<center><img src="../../resources/jetstream_horizon_projects.png" style="height:300px;"></center>
-4. Select Access & Security -> Key Pairs -> Create Key Pair. Give your key a name and click "Create Key Pair". When prompted, download the key file to your local desktop or click the Download link.
-5. Instances -> Launch Instance.
-  * Details: give your instance a name and click Next (Don't click launch instance)
-  * Source: Enter JS-API-Featured-Ubuntu14-Feb-23-2017 in the search and click the plus (+) to select that image.
-  * Flavor: Click the plus next to m1.medium
-  * Networks: Choose the TG-TRA170023-subnet by clicking plus.
-  * (Skip Network Ports by clicking next)
-  * Security Groups: Select default security group.
-  * Key Pair: Select the key you just created in step 4.
-  * Click Launch instance.
-6. Once the VM has been spawned, click the arrow at the far right to select "Associate Floating IP" from the available instance actions.
-<center><img src="../../resources/jetstream_horizon_instance_actions.png" style="height:300px;"></center>
-7. Select an IP in the drop down (if there is not one, click the plus (+) symbol to allocate one) and click Associate.
+#### What's this mean?
+Notebooks are an interface to kernel, the kernel executes your code and outputs back to you through the notebook. The kernel is essentially our programming language we wish to interface with.
 
 
-### Hands on: verifying connectivity to the VM
+### Jupyter Notebooks, Structure
 
-Use the SSH key and IP address you generated in steps 4 and 7 above, respectively to test connectivity to your new VM.
+* Code Cells
+** Code cells allow you to enter and run code
+** Run a code cell using Shift-Enter
+
+* Markdown Cells
+** Text can be added to Jupyter Notebooks using Markdown cells. Markdown is a popular markup language that is a superset of HTML.
+
+
+### Jupyter Notebook, Formatting Markdown Cells
+
+You can add headings:
+```
+# Heading 1
+# Heading 2
+## Heading 2.1
+## Heading 2.2
+```
+
+You can add lists
+```
+1. First ordered list item
+2. Another item
+⋅⋅* Unordered sub-list. 
+1. Actual numbers don't matter, just that it's a number
+⋅⋅1. Ordered sub-list
+4. And another item.
+```
+
+You can do HTML
+```
+<dl>
+  <dt>Definition list</dt>
+  <dd>Is something people use sometimes.</dd>
+
+  <dt>Markdown in HTML</dt>
+  <dd>Does *not* work **very** well. Use HTML <em>tags</em>.</dd>
+</dl>
+```
+And even, Latex!
+```
+$e^{i\pi} + 1 = 0$
+```
 
 OSX/Linux:
 
