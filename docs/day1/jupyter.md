@@ -510,10 +510,194 @@ Or how many times a given item appears in the list:
 ```
     my_list.count(item)
 ```
+### Introducing Numpy
+
+* "Numerical Python"
+* open source extension module for Python
+* provides fast precompiled functions for mathematical and numerical routines
+* adds powerful data structures for efficient computation of multi-dimensional arrays and matrices.
+
+### Numpy, First Steps
+
+Let build a simple list, turn it into a numpy array and perform some simple math.
+
+```
+import numpy as np
+cvalues = [25.3, 24.8, 26.9, 23.9]
+C = np.array(cvalues)
+print(C)
+```
+
+Let build a simple list, turn it into a numpy array and perform some simple math.
+```
+print(C * 9 / 5 + 32)
+```
+
+vs
+
+```
+fvalues = [ x*9/5 + 32 for x in cvalues] 
+print(fvalues)
+```
+
+### Numpy... Arrays vs lists, is it worth it?
+Let's look at these two functions
+```
+import time
+size_of_vec = 1000
+def pure_python_version():
+    t1 = time.time()
+    X = range(size_of_vec)
+    Y = range(size_of_vec)
+    Z = []
+    for i in range(len(X)):
+        Z.append(X[i] + Y[i])
+    return time.time() - t1
+```
+```
+def numpy_version():
+    t1 = time.time()
+    X = np.arange(size_of_vec)
+    Y = np.arange(size_of_vec)
+    Z = X + Y
+    return time.time() - t1
+```
+```
+t1 = pure_python_version()
+t2 = numpy_version()
+print(t1, t2)
+```
+
+### Multidimension Arrays
+```
+A = np.array([ [3.4, 8.7, 9.9], 
+               [1.1, -7.8, -0.7],
+               [4.1, 12.3, 4.8]])
+print(A)
+print(A.ndim)
+
+
+
+B = np.array([ [[111, 112], [121, 122]],
+               [[211, 212], [221, 222]],
+               [[311, 312], [321, 322]] ])
+print(B)
+print(B.ndim)
+```
+#### The Shape Funtion
+```
+x = np.array([ [67, 63, 87],
+               [77, 69, 59],
+               [85, 87, 99],
+               [79, 72, 71],
+               [63, 89, 93],
+               [68, 92, 78]])
+print(np.shape(x))
+```
+
+we can also, <i>change</i> the shape
+
+```
+x.shape = (3, 6)
+print(x)
+
+x.shape = (2, 9)
+print(x)
+```
+
+A few more examples
+```
+x = np.array(42)
+print(np.shape(x))
+
+B = np.array([ [[111, 112], [121, 122]],
+               [[211, 212], [221, 222]],
+               [[311, 312], [321, 322]] ])
+print(B.shape)
+```
+
+#### Indexing
+
+```
+F = np.array([1, 1, 2, 3, 5, 8, 13, 21])
+
+
+# print the first element of F, i.e. the element with the index 0
+print(F[0])
+
+
+# print the last element of F
+print(F[-1])
+
+B = np.array([ [[111, 112], [121, 122]],
+               [[211, 212], [221, 222]],
+               [[311, 312], [321, 322]] ])
+print(B[0][1][0])
+```
+
+#### Slicing
+
+```
+A = np.array([
+[11,12,13,14,15],
+[21,22,23,24,25],
+[31,32,33,34,35],
+[41,42,43,44,45],
+[51,52,53,54,55]])
+
+print(A[:3,2:])
+
+print(A[3:,:])
+```
+
+#### The Identity
+```
+np.identity(4)
+```
+
+#### Numpy, By Example
+The example we will consider is a very simple (read: trivial) case of solving the 2D Laplace equation using an iterative finite difference scheme (four point averaging, Gauss-Seidel or Gauss-Jordan). The formal specification of the problem is as follows. We are required to solve for some unknown function u(x,y) such that ∇2u = 0 with a boundary condition specified. For convenience the domain of interest is considered to be a rectangle and the boundary values at the sides of this rectangle are given.
+
+```
+   def TimeStep(self, dt=0.0):
+        """Takes a time step using straight forward Python loops."""
+        g = self.grid
+        nx, ny = g.u.shape
+        dx2, dy2 = g.dx**2, g.dy**2
+        dnr_inv = 0.5/(dx2 + dy2)
+        u = g.u
+        err = 0.0
+        for i in range(1, nx-1):
+            for j in range(1, ny-1):
+                tmp = u[i,j]
+                u[i,j] = ((u[i-1, j] + u[i+1, j])*dy2 +
+                         (u[i, j-1] + u[i, j+1])*dx2)*dnr_inv
+                diff = u[i,j] - tmp
+                err += diff*diff
+
+        return numpy.sqrt(err)
+```
+vs.
+```
+def numericTimeStep(self, dt=0.0):
+    """Takes a time step using a NumPy expression."""
+    g = self.grid
+    dx2, dy2 = g.dx**2, g.dy**2
+    dnr_inv = 0.5/(dx2 + dy2)
+    u = g.u
+    g.old_u = u.copy() # needed to compute the error.
+
+    # The actual iteration
+    u[1:-1, 1:-1] = ((u[0:-2, 1:-1] + u[2:, 1:-1])*dy2 +
+                     (u[1:-1,0:-2] + u[1:-1, 2:])*dx2)*dnr_inv
+
+    return g.computeError()
+```
 
 ### Introduction to Matplotlib
 
 #### What is Matplotlib?
+
 It’s a graphing library for Python. It has a nice collection of tools that you can use to create anything from simple graphs, to scatter plots, to 3D graphs. It is used heavily in the scientific Python community for data visualisation.
 
 #### Matplotlib, First steps
@@ -632,3 +816,62 @@ plt.title('Sin and Cos Waves') # Add a graph title.
 plt.show()
 ```
 
+#### Animation
+
+##### animation.FuncAnimation(...)
+Makes an animation by repeatedly calling a function func.
+```
+class matplotlib.animation.FuncAnimation(fig, func, frames=None, init_func=None, fargs=None, save_count=None, **kwargs)
+```
+
+```
+%pylab inline
+from matplotlib import animation
+
+# First set up the figure, the axis, and the plot element we want to animate
+fig = plt.figure()
+ax = plt.axes(xlim=(0, 2), ylim=(-2, 2))
+line, = ax.plot([], [], lw=2)
+
+# initialization function: plot the background of each frame
+def init():
+    line.set_data([], [])
+    return line,
+
+# animation function.  This is called sequentially
+def animate(i):
+    x = np.linspace(0, 2, 1000)
+    y = np.sin(2 * np.pi * (x - 0.01 * i))
+    line.set_data(x, y)
+    return line,
+
+# call the animator.  blit=True means only re-draw the parts that have changed.
+anim = animation.FuncAnimation(fig, animate, init_func=init, frames=100, interval=20, blit=True)
+
+# call our new function to display the animation
+display_animation(anim)
+```
+```
+from IPython.display import HTML
+
+def display_animation(anim):
+    plt.close(anim._fig)
+    return HTML(anim_to_html(anim))
+```
+```
+from tempfile import NamedTemporaryFile
+
+VIDEO_TAG = """<video controls>
+ <source src="data:video/x-m4v;base64,{0}" type="video/mp4">
+ Your browser does not support the video tag.
+</video>"""
+
+def anim_to_html(anim):
+    if not hasattr(anim, '_encoded_video'):
+        with NamedTemporaryFile(suffix='.mp4') as f:
+            anim.save(f.name, fps=20, extra_args=['-vcodec', 'libx264'])
+            video = open(f.name, "rb").read()
+        anim._encoded_video = video.encode("base64")
+    
+    return VIDEO_TAG.format(anim._encoded_video)
+```
