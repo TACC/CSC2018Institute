@@ -447,9 +447,9 @@ while (i < 10):    # Condition
 * First position is 0. You can access each position using []
 * Elements in the list can be of different type
 ```
-mylist1 = [“first item”, “second item”]
+mylist1 = ['first item', 'second item']
 mylist2 = [1, 2, 3, 4]
-mylist3 = [“first”, “second”, 3]
+mylist3 = ['first', 'second', 3]
 print(mylist1[0], mylist1[1])
 print(mylist2[0])
 print(mylist3)
@@ -479,7 +479,7 @@ print(mylist2[0] + mylist3[2])
 * Delete an element
 ```
     len(mylist2)
-    del mylist2[0]
+    del(mylist2[0])
     print(mylist2)
 ```
 * Iterate over the elements of a list:
@@ -703,7 +703,7 @@ F = np.array([1, 1, 2, 3, 5, 8, 13, 21])
 print(F[0])
 
 
-# print the last element of F
+# "print "the last element of F
 print(F[-1])
 
 B = np.array([ [[111, 112], [121, 122]],
