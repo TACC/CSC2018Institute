@@ -1,14 +1,8 @@
 # Introduction to Cloud Computing
 
 
-This module will be partially interactive. Please follow along on your own computer. After taking this module, participants should be able to:
+This module will be partially interactive. Please follow along on your own computer. 
 
- * Print, identify, and modify environment variables
- * List and search for available modules
- * Load and unload modules specific to a certain objective
- * Automate module and environment commands in the `.bashrc`
- * Prepare and submit a batch job to a queue
- 
  
 ### What is a cloud?
 
