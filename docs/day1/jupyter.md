@@ -510,6 +510,73 @@ Or how many times a given item appears in the list:
 ```
     my_list.count(item)
 ```
+### JSON
+JSON (JavaScript Object Notation) is a lightweight data-interchange format. It is easy for humans to read and write. It is easy for machines to parse and generate. It is based on a subset of the JavaScript Programming Language, Standard ECMA-262 3rd Edition - December 1999. JSON is a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others. These properties make JSON an ideal data-interchange language.
+
+JSON is built on two structures:
+
+A collection of name/value pairs. In various languages, this is realized as an object, record, struct, dictionary, hash table, keyed list, or associative array.
+An ordered list of values. In most languages, this is realized as an array, vector, list, or sequence.
+
+#### Creating JSON files
+```
+import json
+
+data = {}  
+data['people'] = []  
+data['people'].append({  
+    'name': 'Scott',
+    'website': 'stackabuse.com',
+    'from': 'Nebraska'
+})
+data['people'].append({  
+    'name': 'Larry',
+    'website': 'google.com',
+    'from': 'Michigan'
+})
+data['people'].append({  
+    'name': 'Tim',
+    'website': 'apple.com',
+    'from': 'Alabama'
+})
+
+with open('data.txt', 'w') as outfile:  
+    json.dump(data, outfile)
+```
+* import the json library
+* construct some simple data to write to our file. 
+** The important part comes at the end when we use the with statement to open our destination file
+* use json.dump to write the data object to the outfile file.
+
+### Reading JSON files
+Reading JSON data from a file is just as easy as writing it to a file. Using the same json package again, we can extract and parse the JSON string directly from a file object.
+
+```
+import json
+
+with open('data.txt') as json_file:  
+    data = json.load(json_file)
+    for p in data['people']:
+        print('Name: ' + p['name'])
+        print('Website: ' + p['website'])
+        print('From: ' + p['from'])
+        print('')
+```
+json.load is the method to note here. It reads the string from the file, parses the JSON data, populates a Python dict with the data and returns it back to you.
+
+#### Exercise 7
+
+create a 3 lists:
+one list, x,  holding numbers going from 0 to 2*pi, in steps of .01
+one list, y1, holding x*x
+one list, y2, holding x*x*x
+
+write these out as a JSON file:
+x: <i>x value</i>
+x_squared: <i>y1 value</i>
+x_cubed: <i>y2 value</i>
+
+
 ### Introducing Numpy
 
 * "Numerical Python"
