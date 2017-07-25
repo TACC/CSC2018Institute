@@ -1,0 +1,24 @@
+{
+  "id": "jfs.cscint.storage",
+  "name": "JFS Personal VM for CSC Institute",
+  "status": "UP",
+  "type": "STORAGE",
+  "description": "JFS Personal VM for CSC Institute",
+  "site": "www.tacc.utexas.edu",
+  "public": true,
+  "default": true,
+  "storage": {
+    "host": "",
+    "port": 22,
+    "protocol": "SFTP",
+    "rootDir": "/",
+    "homeDir": "/home/ubuntu",
+    "publicAppsDir": "/",
+    "auth": {
+      "username": "root",
+      "publicKey": "",
+      "privateKey": "",
+      "type": "SSHKEYS"
+    }
+  }
+}
