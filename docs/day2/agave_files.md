@@ -45,12 +45,11 @@ Exercise. Confirm that your file is uploaded by doing another listing. Make two 
 Exercise. Create an empty directory on your Jetstream VM and download the test file from your home directory on the class storage system to the empty directory. Display the contents of the newly downloaded file and confirm the contents are the same as the original file.
 ```
 
-
 ### Register Your Instance as a Storage System
 
 We can turn our VM into an Agave storage server. In fact, the steps we are going to take to do so will work with any SSH/SFTP server you have in your own data center.
 
-1. Generate SSH Keys.
+#### Generate SSH Keys
 We need to generate a pair of disposable SSH keys to register our system with Agave. Open the terminal and enter:
 ```
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
@@ -68,9 +67,10 @@ and at the prompt to enter a password, leave it blank.
 
 That command should have generated `<file>.key` and `<file>.pub` in the pwd.
 
-2. Add the public key to `/root/.ssh/authorized_keys`
+#### Add the public key to `/root/.ssh/authorized_keys`
+Open up the authorized_keys file in an editor and be sure to use the precise file contents, not those with carriage returns.
 
-3. Create a system.json file
+#### Create a system.json file
 Next, download the storage template file from the class github site:
 
 ```
@@ -88,12 +88,13 @@ s
   * Add your VM's IP in the `host` entry.
   * Modify the id to somthing unique
 
-4. Register your system.
+
+#### Register your system
 ```
 rsp = requests.post('https://api.tacc.utexas.edu/systems/v2', files={'fileToUpload': open('storage.json', 'rb')}, headers=headers)
 ```
 
-5. Test your system.
+#### Test your system
 
 Let's list files using the files endpoint:
 
@@ -101,7 +102,7 @@ Let's list files using the files endpoint:
 rsp = requests.get('https://api.tacc.utexas.edu/files/v2/listings/system/jfs.cscint.storage//root', headers=headers)
 ```
 
-6.Share your system with others:
+#### Share your system with others (optional)
 
 ```
 data = {'username': 'some_tacc_user', 'role': 'USER'}
