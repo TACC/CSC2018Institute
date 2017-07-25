@@ -1,12 +1,12 @@
 {
-  "id": "jfs.cscint.storage",
+  "id": "<user>.cscint.storage",
   "name": "JFS Personal VM for CSC Institute",
   "status": "UP",
   "type": "STORAGE",
   "description": "JFS Personal VM for CSC Institute",
   "site": "www.tacc.utexas.edu",
-  "public": true,
-  "default": true,
+  "public": false,
+  "default": false,
   "storage": {
     "host": "",
     "port": 22,
