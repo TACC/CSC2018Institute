@@ -14,7 +14,7 @@ df = dd.read_csv(csv, parse_dates=['tpep_pickup_datetime', 'tpep_dropoff_datetim
 Do a similar basic exploration of the data. You could begin with these questions:
   * How many total cab trips are in the dataset?
   * How do the trip distances vary as a function of the number of passengers?
-  * # compute average tip, as a fraction of the fare amount, and explore how that fraction varies as a function of i) the hour of the day and ii) the day of the week.
+  * Compute average tip, as a fraction of the fare amount, and explore how that fraction varies as a function of i) the hour of the day and ii) the day of the week.
 
 
 The payment type is an integer which codes for the following payment types:
