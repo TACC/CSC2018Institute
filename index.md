@@ -59,13 +59,13 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Dask Distrbuted and Automating a Virtual Cluster with Anisble](docs/dask_ansible.md) |
+|  8:30 - 10:00 | [Introduction to Dask](docs/day4/Intro_to_Dask.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Hands-on: Using Ansible to Build a Virtual Cluster](labs/dask_ansible.md) |
+| 10:15 - 11:45 | [Analyzing Large CSVs with Dask Distributed](docs/day4/Dask_Distributed.md) |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Introduction to Dask](docs/day4/Intro_to_Dask.md) |
+| 13:00 - 14:30 | [Introduction to OpenStack CLI](docs/day4/Intro_to_openstack_cli) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Analyzinf a Large CSV with Dask Distributed](docs/day4/Dask_Distributed.md) |
+| 14:45 - 16:15 | [Deploying a Cluster on JetStream](docs/day4/openstack_cluster.md) |
 
 ### Friday
 
