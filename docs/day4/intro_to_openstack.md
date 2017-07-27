@@ -229,6 +229,8 @@ Create the network
 
 ```
 openstack network create ${OS_USERNAME}-api-net
+Old command: neutron net-create ${OS_USERNAME}-api-net
+
 ```
 
 List the networks; do you see yours?
@@ -242,6 +244,7 @@ in this class (technically, this OpenStack project) will need to use a unique su
 
 ```
 openstack subnet create --network ${OS_USERNAME}-api-net --subnet-range 10.X.Y.0/24 ${OS_USERNAME}-api-subnet1
+Old command: neutron subnet-create ${OS_USERNAME}-api-net 10.22.22.0/24 --name ${OS_USERNAME}-api-subnet1
 
 ```
 
@@ -249,13 +252,15 @@ Create a router
 
 ```
 openstack router create ${OS_USERNAME}-api-router
-
+Old command: neutron router-create ${OS_USERNAME}-api-router
 ```
 
 Attach the router (gateway) to your subnet
 
 ```
 openstack router add subnet ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
+Old command: neutron router-interface-add ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
+
 
 ```
 
@@ -263,6 +268,8 @@ Attach your router to the public external gateway
 
 ```
 openstack router set --external-gateway public ${OS_USERNAME}-api-router
+Old command: neutron router-gateway-set ${OS_USERNAME}-api-router public
+
 
 ```
 
@@ -317,6 +324,7 @@ Create an IP address...
 
 ```
 openstack floating ip create public
+Old command: nova floating-ip-create public
 
 ```
 
@@ -324,6 +332,8 @@ openstack floating ip create public
 
 ```
 openstack server add floating ip ${OS_USERNAME}-api-U-1 <your.ip.number.here>
+Old command: nova floating-ip-associate ${OS_USERNAME}-api-U-1 <your.ip.number.here>
+
 
 ```
 
@@ -394,6 +404,15 @@ Remove the IP from the instance
 
 ```
 openstack server remove floating ip ${OS_USERNAME}-api-U-1 <your.ip.number.here>
+Old command: nova floating-ip-disassociate ${OS_USERNAME}-api-U-1  <your.ip.number.here>
+
+```
+
+Return the IP to the pool
+
+```
+openstack floating ip delete <your.ip.number.here>
+Old command: nova floating-ip-delete <your.ip.number.here>
 
 ```
 
@@ -401,6 +420,7 @@ Delete the instance
 
 ```
 openstack server delete ${OS_USERNAME}-api-U-1
+Old command: nova delete ${OS_USERNAME}-api-U-1
 
 ```
 
@@ -408,6 +428,7 @@ Unplug your router from the public network
 
 ```
 openstack router unset --external-gateway ${OS_USERNAME}-api-router
+Old command: neutron router-gateway-clear ${OS_USERNAME}-api-router
 
 ```
 
@@ -415,6 +436,7 @@ Remove the subnet from the network
 
 ```
 openstack router remove subnet ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
+Old command: neutron router-interface-delete ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
 
 ```
 
@@ -422,6 +444,7 @@ Delete the router
 
 ```
 openstack router delete ${OS_USERNAME}-api-router
+Old command: neutron router-delete ${OS_USERNAME}-api-router
 
 ```
 
@@ -436,6 +459,8 @@ Delete the network
 
 ```
 openstack network delete ${OS_USERNAME}-api-net
+Old command: neutron net-delete ${OS_USERNAME}-api-net
+
 
 ```
 
