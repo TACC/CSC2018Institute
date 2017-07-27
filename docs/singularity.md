@@ -119,13 +119,13 @@ We already know about pulling images like centos directly from docker, but there
 Just make sure to
 
 ```
-[jetstream]$ sudo singularity exec --writable qiime.img mkdir /{work,scratch,home1,corral}
+[jetstream]$ sudo singularity exec --writable qiime-1.9.1--np112py27_1.img mkdir /{work,scratch,home1,corral}
 ```
 
 if you want to run this at TACC. Lets also transfer this image to Stampede2
 
 ```
-[jetstream]$ scp qiime-1.9.1--np112py27_1.img username@stampede2.tacc.utexas.edu
+[jetstream]$ scp qiime-1.9.1--np112py27_1.img username@stampede2.tacc.utexas.edu:
 ```
 
 ## Running containers at TACC
@@ -224,9 +224,9 @@ exec bedtools "$@"
 bv=$(bedtools --version)
 if [ "$bv" == "bedtools v2.26.0" ]
 then
-  echo "PASS - $bv found"
+    echo "PASS - $bv found"
 else
-		echo "FAIL - $bv not found"
+    echo "FAIL - $bv not found"
 fi
 
 %files
