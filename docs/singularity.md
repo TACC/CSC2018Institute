@@ -233,7 +233,7 @@ fi
 
 %environment
 
-MYVAR cats
+MYVAR=cats
 
 %labels
 
@@ -246,7 +246,7 @@ After creating your image, you can bootstrap and run it as follows
 
 ```
 singularity create -F -s 1024 bedtools.img
-singularity bootstrap bedtools.img bedtools.def
+sudo singularity bootstrap bedtools.img bedtools.def
 singularity test bedtools.img
 singularity run bedtools.img intersect -h
 singularity exec bedtools.img bedtools intersect -h
