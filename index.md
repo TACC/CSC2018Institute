@@ -64,7 +64,7 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 | 10:15 - 10:30 | [Introduction to Singularity](docs/singularity.md) |
 | 10:30 - 11:45 | [Analyzing Large CSVs with Dask Distributed Pt 1](docs/day4/large_csvs_1.md) and [Analyzing Large CSVs with Dask Distributed Pt 2](docs/day4/large_csvs_2.md)  |
 | 11:45 - 13:00 | Lunch |
-| 13:00 - 14:30 | [Introduction to OpenStack CLI](docs/day4/Intro_to_openstack_cli) |
+| 13:00 - 14:30 | [Introduction to OpenStack CLI](docs/day4/intro_to_openstack_cli) |
 | 14:30 - 14:45 | Break |
 | 14:45 - 16:15 | [Deploying a Cluster on JetStream](docs/day4/openstack_cluster.md) |
 
