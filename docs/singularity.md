@@ -164,6 +164,32 @@ You should now be able to run/exec/shell your the qiime container you transferre
 
 # Sinularity Bootstrap
 
+Besides pulling pre-built docker images, you can build your own by writing a [definition file](http://singularity.lbl.gov/bootstrap-image) and bootstrapping (building) the image on your own.
+
+A singularity file contains a header, which specifies the manager and base OS to build from.
+
+## Docker header
+
+```
+Bootstrap: docker
+From: ubuntu:latest
+```
+
+## Centos header
+
+```
+BootStrap: yum
+OSVersion: 7
+MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/$basearch/
+Include: yum
+```
+
+After you make your header, you just need to write the sections of your container.
+
+- `%setup` - When you need to run commands and copy files into the container before `%post`
+- `%post` - The actual setup commands
+
+
 ```
 Bootstrap: docker
 From: tensorflow/tensorflow:latest
