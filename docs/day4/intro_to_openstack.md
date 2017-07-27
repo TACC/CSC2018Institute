@@ -121,7 +121,7 @@ openstack image list
 * <tt>openstack NOUN VERB PARAMETERS</tt>
 * <tt>openstack <b>help</b> [NOUN [VERB [PARAMETER]]]</tt>
 * <tt>openstack NOUN VERB <b>-h</b></tt>    will also produce the help documentation
-* Common NOUNs include <tt>image, server, volume, network, subnet, router, port,<tt> etc.
+* Common NOUNs include <tt>image, server, volume, network, subnet, router, port,</tt> etc.
 * Common verbs are <tt>list, show, set, create, delete,</tt> etc.  
 * Two commonly used verbs are <tt>list</tt> and <tt>show</tt>
 * <tt>list</tt> will show everything that your project is allowed to view
@@ -166,39 +166,51 @@ the results of all the other students commands as they execute them.
 Create the group that we will be adding rules to
 
 ```
-openstack security group create --description "ssh & icmp enabled" ${OS_USERNAME}-global-ssh
+New command: openstack security group create --description "ssh & icmp enabled" ${OS_USERNAME}-global-ssh
+Old command: nova secgroup-create ${OS_USERNAME}-global-ssh "ssh & icmp enabled"
 ```
 
 Create a rule for allowing ssh inbound from an IP address
 
 ```
-openstack security group rule create --protocol tcp --dst-port 22:22 --remote-ip 0.0.0.0/0 ${OS_USERNAME}-global-ssh
+New command: openstack security group rule create --proto tcp --dst-port 22:22 --src-ip 0.0.0.0/0 ${OS_USERNAME}-global-ssh
+Old command: nova secgroup-add-rule global-ssh tcp 22 22 0.0.0.0/0
 
 ```
 
 Create a rule that allows ping and other ICMP packets
 
 ```
-openstack security group rule create --protocol icmp ${OS_USERNAME}-global-ssh
+New command: openstack security group rule create --proto icmp ${OS_USERNAME}-global-ssh
+Old command: nova secgroup-add-rule global-ssh icmp -1 -1 0.0.0.0/0
+
 ```
 
 Optional rule to allow connectivity within a mini-cluster;  i.e. if you boot more
 than one instance, this rule allows for comminications amonst all those instances.
 
 ```
-openstack security group rule create --protocol tcp --dst-port 1:65535 --remote-ip 0.0.0.0/0 ${OS_USERNAME}-global-ssh
+New command: openstack security group rule create --proto tcp --dst-port 1:65535 --src-ip 10.0.0.0/0 ${OS_USERNAME}-global-ssh
+New command: openstack security group rule create --proto udp --dst-port 1:65535 --src-ip 10.0.0.0/0 ${OS_USERNAME}-global-ssh
+Old command: nova secgroup-add-rule global-ssh tcp 1 65535 10.0.0.0/24
+Old command: nova secgroup-add-rule global-ssh udp 1 65535 10.0.0.0/24
 
 A better (more restrictive) example might be:
 
-openstack security group rule create --protocol tcp --dst-port 1:65535 --remote-ip 10.X.Y.0/24 ${OS_USERNAME}-global-ssh
+New command: openstack security group rule create --proto tcp --dst-port 1:65535 --src-ip 10.X.Y.0/0 ${OS_USERNAME}-global-ssh
+New command: openstack security group rule create --proto udp --dst-port 1:65535 --src-ip 10.X.Y.0/0 ${OS_USERNAME}-global-ssh
+Old command: nova secgroup-add-rule global-ssh tcp 1 65535 10.X.Y.0/24
+Old command: nova secgroup-add-rule global-ssh udp 1 65535 10.X.Y.0/24
 
 ```
 
 Adding/removing security groups after an instance is running
 
 ```
-openstack server add security group  ${OS_USERNAME}-api-U-1 ${OS_USERNAME}-global-ssh
-openstack server remove remove security group ${OS_USERNAME}-api-U-1 ${OS_USERNAME}-global-ssh
+New command: openstack server add    security group ${OS_USERNAME}-api-U-1 ${OS_USERNAME}-global-ssh
+New command: openstack server remove security group ${OS_USERNAME}-api-U-1 ${OS_USERNAME}-global-ssh
+Old command: nova add-secgroup    ${OS_USERNAME}-api-U-1 global-ssh
+Old command: nova remove-secgroup ${OS_USERNAME}-api-U-1 global-ssh
 
 ```
 
@@ -219,7 +231,9 @@ ssh-keygen -b 2048 -t rsa -f ${OS_USERNAME}-api-key -P ""
 Upload your key to OpenStack
 
 ```
-openstack keypair create --public-key ${OS_USERNAME}-api-key.pub ${OS_USERNAME}-api-key
+New command: openstack keypair create --public-key ${OS_USERNAME}-api-key.pub ${OS_USERNAME}-api-key
+Old command: nova keypair-add --pub-key ${OS_USERNAME}-api-key.pub ${OS_USERNAME}-api-key
+
 ```
 
 
@@ -228,7 +242,7 @@ openstack keypair create --public-key ${OS_USERNAME}-api-key.pub ${OS_USERNAME}-
 Create the network
 
 ```
-openstack network create ${OS_USERNAME}-api-net
+New command: openstack network create ${OS_USERNAME}-api-net
 Old command: neutron net-create ${OS_USERNAME}-api-net
 
 ```
@@ -236,14 +250,15 @@ Old command: neutron net-create ${OS_USERNAME}-api-net
 List the networks; do you see yours?
 
 ```
-openstack network list
+New command: openstack network list
+Old command: neutron net-list
 ```
 
 Create a subnet within your network.  Note the X & Y in the address range.  Each student 
 in this class (technically, this OpenStack project) will need to use a unique subnet range
 
 ```
-openstack subnet create --network ${OS_USERNAME}-api-net --subnet-range 10.X.Y.0/24 ${OS_USERNAME}-api-subnet1
+New command: openstack subnet create --network ${OS_USERNAME}-api-net --subnet-range 10.X.Y.0/24 ${OS_USERNAME}-api-subnet1
 Old command: neutron subnet-create ${OS_USERNAME}-api-net 10.22.22.0/24 --name ${OS_USERNAME}-api-subnet1
 
 ```
@@ -251,23 +266,23 @@ Old command: neutron subnet-create ${OS_USERNAME}-api-net 10.22.22.0/24 --name $
 Create a router
 
 ```
-openstack router create ${OS_USERNAME}-api-router
+New command: openstack router create ${OS_USERNAME}-api-router
 Old command: neutron router-create ${OS_USERNAME}-api-router
 ```
 
-Attach the router (gateway) to your subnet
+Attach your subnet to the router 
 
 ```
-openstack router add subnet ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
+New command: openstack router add subnet ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
 Old command: neutron router-interface-add ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
 
 
 ```
 
-Attach your router to the public external gateway
+Attach your router to the public (externally routed) network
 
 ```
-openstack router set --external-gateway public ${OS_USERNAME}-api-router
+New command: openstack router set --external-gateway public ${OS_USERNAME}-api-router
 Old command: neutron router-gateway-set ${OS_USERNAME}-api-router public
 
 
@@ -276,7 +291,8 @@ Old command: neutron router-gateway-set ${OS_USERNAME}-api-router public
 Note the details of your router
 
 ```
-openstack router show ${OS_USERNAME}-api-router
+New command: openstack router show ${OS_USERNAME}-api-router
+Old command: neutron   router-show ${OS_USERNAME}-api-router
 
 ```
 
@@ -286,14 +302,16 @@ openstack router show ${OS_USERNAME}-api-router
 Note the flavors (sizes) of instances that create
 
 ```
-openstack flavor list
+New command: openstack flavor list
+Old command: nova      flavor-list
 
 ```
 
 Note the possible images that you can use on the API side of Jetstream.  
 
 ```
-openstack image list | grep JS-API-Featured
+New command: openstack image list --limit 500 | grep JS-API-Featured
+Old command: glance image list | grep JS-API-Featured
 
 ```
 
@@ -307,12 +325,22 @@ usable.
 ### Time to boot your instance
 
 ```
+New command: 
 openstack server create ${OS_USERNAME}-api-U-1 \
 --flavor <FLAVOR> \
 --image <IMAGE-NAME> \
 --key-name ${OS_USERNAME}-api-key \
 --security-group ${OS_USERNAME}-global-ssh \
 --nic net-id=${OS_USERNAME}-api-net
+
+Old command: 
+nova boot ${OS_USERNAME}-api-c7i-001 \
+  --flavor <FLAVOR> \
+  --image  <IMAGE-NAME> \
+  --key-name ${OS_USERNAME}-api-key \
+  --security-groups ${OS_USERNAME}-global-ssh \
+  --nic net-name=$${OS_USERNAME}-api-net
+
 
 ```
 
@@ -323,15 +351,15 @@ name; otherwise, you will have to control your instances via the UUID
 Create an IP address...
 
 ```
-openstack floating ip create public
-Old command: nova floating-ip-create public
+New command: openstack floating ip create public
+Old command: nova      floating-ip-create public
 
 ```
 
 ...then add that IP address to your running instance.
 
 ```
-openstack server add floating ip ${OS_USERNAME}-api-U-1 <your.ip.number.here>
+New command: openstack server add floating ip ${OS_USERNAME}-api-U-1 <your.ip.number.here>
 Old command: nova floating-ip-associate ${OS_USERNAME}-api-U-1 <your.ip.number.here>
 
 
@@ -351,8 +379,10 @@ ssh root@<your.ip.number.here>
 
 Reboot the instance (shutdown -r now).
 ```
-openstack server reboot ${OS_USERNAME}-api-U-1
-openstack server reboot ${OS_USERNAME}-api-U-1 --hard
+New command: openstack server reboot ${OS_USERNAME}-api-U-1
+New command: openstack server reboot ${OS_USERNAME}-api-U-1 --hard
+Old command: nova reboot ${OS_USERNAME}-api-U-1
+
 
 ```
 
@@ -362,8 +392,10 @@ host so that when you decide restart the instance, resources are available to
 activate the instance.
 
 ```
-openstack server stop ${OS_USERNAME}-api-U-1
-openstack server start ${OS_USERNAME}-api-U-1
+New command: openstack server stop ${OS_USERNAME}-api-U-1
+New command: openstack server start ${OS_USERNAME}-api-U-1
+Old command: nova stop  ${OS_USERNAME}-api-U-1
+Old command: nova start ${OS_USERNAME}-api-U-1
 
 ```
 
@@ -372,9 +404,10 @@ Note that your instance still remains in memory, state is retained, and resource
 to be reserved on the compute host assuming that you will be restarting the instance.
 
 ```
-openstack server pause ${OS_USERNAME}-api-U-1
-openstack server unpause ${OS_USERNAME}-api-U-1
-
+New command: openstack server pause   ${OS_USERNAME}-api-U-1
+New command: openstack server unpause ${OS_USERNAME}-api-U-1
+Old command: nova pause   ${OS_USERNAME}-api-U-1
+Old command: nova unpause ${OS_USERNAME}-api-U-1
 
 ```
 
@@ -383,8 +416,11 @@ Note that resources are still reserved on the compute host for when you
 decide restart the instance
 
 ```
-openstack server suspend ${OS_USERNAME}-api-U-1
-openstack server resume  ${OS_USERNAME}-api-U-1
+New command: openstack server suspend ${OS_USERNAME}-api-U-1
+New command: openstack server resume  ${OS_USERNAME}-api-U-1
+Old command: nova suspend ${OS_USERNAME}-api-U-1
+Old command: nova resume  ${OS_USERNAME}-api-U-1
+
 
 ```
 
@@ -392,8 +428,9 @@ Shut the instance down and move to storage.  Memory state is not maintained. Eph
 storage is maintained. 
 
 ```
-openstack server shelve ${OS_USERNAME}-api-U-1
-openstack server unshelve ${OS_USERNAME}-api-U-1
+New command: openstack server shelve ${OS_USERNAME}-api-U-1
+New command: openstack server unshelve ${OS_USERNAME}-api-U-1
+Old command: the shelve concept did not exist before the openstack command came along
 
 ```
 
@@ -403,7 +440,7 @@ openstack server unshelve ${OS_USERNAME}-api-U-1
 Remove the IP from the instance
 
 ```
-openstack server remove floating ip ${OS_USERNAME}-api-U-1 <your.ip.number.here>
+New command: openstack server remove floating ip ${OS_USERNAME}-api-U-1 <your.ip.number.here>
 Old command: nova floating-ip-disassociate ${OS_USERNAME}-api-U-1  <your.ip.number.here>
 
 ```
@@ -411,7 +448,7 @@ Old command: nova floating-ip-disassociate ${OS_USERNAME}-api-U-1  <your.ip.numb
 Return the IP to the pool
 
 ```
-openstack floating ip delete <your.ip.number.here>
+New command: openstack floating ip delete <your.ip.number.here>
 Old command: nova floating-ip-delete <your.ip.number.here>
 
 ```
@@ -419,7 +456,7 @@ Old command: nova floating-ip-delete <your.ip.number.here>
 Delete the instance
 
 ```
-openstack server delete ${OS_USERNAME}-api-U-1
+New command: openstack server delete ${OS_USERNAME}-api-U-1
 Old command: nova delete ${OS_USERNAME}-api-U-1
 
 ```
@@ -427,7 +464,7 @@ Old command: nova delete ${OS_USERNAME}-api-U-1
 Unplug your router from the public network
 
 ```
-openstack router unset --external-gateway ${OS_USERNAME}-api-router
+New command: openstack router unset --external-gateway ${OS_USERNAME}-api-router
 Old command: neutron router-gateway-clear ${OS_USERNAME}-api-router
 
 ```
@@ -435,7 +472,7 @@ Old command: neutron router-gateway-clear ${OS_USERNAME}-api-router
 Remove the subnet from the network
 
 ```
-openstack router remove subnet ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
+New command: openstack router remove subnet ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
 Old command: neutron router-interface-delete ${OS_USERNAME}-api-router ${OS_USERNAME}-api-subnet1
 
 ```
@@ -443,7 +480,7 @@ Old command: neutron router-interface-delete ${OS_USERNAME}-api-router ${OS_USER
 Delete the router
 
 ```
-openstack router delete ${OS_USERNAME}-api-router
+New command: openstack router delete ${OS_USERNAME}-api-router
 Old command: neutron router-delete ${OS_USERNAME}-api-router
 
 ```
@@ -451,14 +488,15 @@ Old command: neutron router-delete ${OS_USERNAME}-api-router
 Delete the subnet
 
 ```
-openstack subnet delete ${OS_USERNAME}-api-subnet1
+New command: openstack subnet delete ${OS_USERNAME}-api-subnet1
+Old command: neutron subnet-delete ${OS_USERNAME}-api-net  --name ${OS_USERNAME}-api-subnet1
 
 ```
 
 Delete the network
 
 ```
-openstack network delete ${OS_USERNAME}-api-net
+New command: openstack network delete ${OS_USERNAME}-api-net
 Old command: neutron net-delete ${OS_USERNAME}-api-net
 
 
