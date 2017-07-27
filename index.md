@@ -59,7 +59,7 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Introduction to Dask](docs/day4/Intro_to_Dask.md) |
+|  8:30 - 10:00 | [Introduction to Docker](docs/day4/intro_to_docker.md) |
 | 10:00 - 10:15 | Break |
 | 10:15 - 11:45 | [Analyzing Large CSVs with Dask Distributed Pt 1](docs/day4/large_csvs_1.md) and [Analyzing Large CSVs with Dask Distributed Pt 2](docs/day4/large_csvs_2.md)  |
 | 11:45 - 13:00 | Lunch |
