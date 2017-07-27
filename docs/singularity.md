@@ -184,40 +184,70 @@ MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/$basearc
 Include: yum
 ```
 
+## Definition sections
+
 After you make your header, you just need to write the sections of your container.
 
 - `%setup` - When you need to run commands and copy files into the container before `%post`
 - `%post` - The actual setup commands
+  - Making directories
+  - yum/apt commands
+  - git clone
+  - make
+- `%labels` - Any metadata you want associated with your container
+  - NAME VALUE
+- `%environment` - Environment values that are sources whenever using the container
+  - NAME VALUE
+- `%runscript` - This is what runs when you `singularity run` the container
+  - Prefix the execution command with `exec`
+- `%test` - A test to make sure the container was built correctly
+  - Runs after `%post`
+  - Run anytime using `singularity test`
 
+## Example definition file
 
 ```
-Bootstrap: docker
-From: tensorflow/tensorflow:latest
-
-%runscript
- 
-# What happens when you "singularity run"
-    exec /usr/bin/python "$@"
+BootStrap: docker
+From: fedora:latest
 
 %post
 
-# Extra installation commands
-    echo "Post install stuffs!"
+yum -y install samtools BEDTools git
+
+%runscript
+
+echo "Arguments received: $*"
+exec bedtools "$@"
+
+%test
+
+bv=$(bedtools --version)
+if [ "$bv" == "bedtools v2.26.0" ]
+then
+  echo "PASS - $bv found"
+else
+		echo "FAIL - $bv not found"
+fi
 
 %files
 
-# The files you want to add to the container
-/home/vanessa/Desktop/analysis.py /tmp/analysis.py
-relative_path.py /tmp/analysis2.py
-
 %environment
 
-# Environment variables
-TOPSECRET pancakes
-HELLO WORLD
+MYVAR cats
 
 %labels
 
-# Container tags
 AUTHOR username
+```
+
+## Bootstrapping
+
+After creating your image, you can bootstrap and run it as follows
+
+```
+singularity create -F -s 1024 bedtools.img
+singularity bootstrap bedtools.img bedtools.def
+singularity test bedtools.img
+singularity run bedtools.img intersect -h
+singularity exec bedtools.img bedtools intersect -h
 ```
