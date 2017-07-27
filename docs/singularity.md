@@ -122,23 +122,76 @@ Just make sure to
 [jetstream]$ sudo singularity exec --writable qiime.img mkdir /{work,scratch,home1,corral}
 ```
 
-if you want to run this at TACC.
+if you want to run this at TACC. Lets also transfer this image to Stampede2
+
+```
+[jetstream]$ scp qiime-1.9.1--np112py27_1.img username@stampede2.tacc.utexas.edu
+```
 
 ## Running containers at TACC
 
 Singularity 2.3.1 is installed on Stampede2, but it can only be run from compute nodes.
 
 ```
-[laptop]$ ssh stampede2
+[jetstream]$ ssh username@stampede2.tacc.utexas.edu
 [stampede2]$ module load tacc-singularity
 [stampede2]$ singularity -h
 ```
 
-You should recieve a warning message because you are currently on a login node
+You should recieve a warning message because you are currently on a login node.
+
+Login nodes are the nodes that all users land on when they ssh to a TACC system. These are designed to
+
+- Handle network connections
+- Stage data
+- Schedule jobs
+
+To ensure that all users have a responsive experience at TACC, we disabled Singularity on login nodes. This is because your container spawns many processes and utilizes loop devices when mounting the image. Luckily, TACC makes interactive compute sessions fairly accessible.
 
 ```
-[stampede2]$ idev -m 30
+[jetstream]$ idev -m 30
 [compute]$ singularity -h
 ```
 
-You can now pull your favorite docker, biocontainer, or singularity image and run!
+You should now be able to run/exec/shell your the qiime container you transferred to Stampede2!
+
+```
+[compute]$ singularity exec qiime-1.9.1--np112py27_1.img pick_de_novo_otus.py -h
+[compute]$ singularity shell qiime-1.9.1--np112py27_1.img
+[singularity]$ ls /work
+[singularity]$ ls /scratch
+```
+
+# Sinularity Bootstrap
+
+```
+Bootstrap: docker
+From: tensorflow/tensorflow:latest
+
+%runscript
+ 
+# What happens when you "singularity run"
+    exec /usr/bin/python "$@"
+
+%post
+
+# Extra installation commands
+    echo "Post install stuffs!"
+
+%files
+
+# The files you want to add to the container
+/home/vanessa/Desktop/analysis.py /tmp/analysis.py
+relative_path.py /tmp/analysis2.py
+
+%environment
+
+# Environment variables
+TOPSECRET pancakes
+HELLO WORLD
+
+%labels
+
+# Container tags
+AUTHOR username
+```
