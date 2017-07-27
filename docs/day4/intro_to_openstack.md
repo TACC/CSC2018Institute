@@ -30,6 +30,12 @@ https://iujetstream.atlassian.net/wiki/display/JWT/Using+the+Jetstream+API
 https://iujetstream.atlassian.net/wiki/display/JWT/After+API+access+has+been+granted
 </a>
 
+### SDKs for programmatically accessing OpenStack's APIs
+<a href="https://developer.openstack.org/firstapp-libcloud/getting_started.html">
+https://developer.openstack.org/firstapp-libcloud/getting_started.html
+<a>
+
+
 ### openrc.sh for Jetstream's OpenStack API
 
 <a href="https://iujetstream.atlassian.net/wiki/display/JWT/Setting+up+openrc.sh">
@@ -318,9 +324,19 @@ Delete the network
 openstack network delete ${OS_USERNAME}-api-net
 ```
 
+## For further investigation...
 
+A tutorial was presented at the PEARC17 conference on 
+<a href="https://github.com/ECoulter/Tutorial_Practice">
+how to build a SLURM HPC cluster with OpenStack
+</a>  
+The tutorial assumes that a node at IP 149.165.157.95 is running 
+that you need to login to as a first step.  This node was provided as
+an easy way to run the class and its only purpose was to provide a 
+host with the openstack CLI clients installed.  You can safely skip
+this step and proceed with executing the openstack commands you see
 
-
+in the tutorial. 
 
 
 
