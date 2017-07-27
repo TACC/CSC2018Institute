@@ -72,9 +72,9 @@ Click [here](docs/topics.md) for a summary of all topics covered as well as link
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Additional Topics](docs/extra_topics.md) |
+|  8:30 - 10:00 | [Additional Topics](docs/extra_topics.md) & [Survey](https://goo.gl/forms/sI5pKxDTm8KFIdur2) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Cloud@TACC](docs/cloud_tacc.md) and [Wrap-up](docs/wrap_up.md) |
+| 10:15 - 11:45 | Open Discussion |
 | 11:45 - 13:00 | Lunch & Closing |
 
 
