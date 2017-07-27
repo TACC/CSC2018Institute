@@ -51,18 +51,10 @@ The following steps must work before proceeding; specifically, accessing
 the Horizon dashboard. If you cannot login to the Horizon dashboard, nothing 
 else will work.
 
-* Log into the 
-<a href="https://www.xsede.org">
-XSEDE User portal
-</a>
-with your XSEDE username and password
+* Log into the <a href="https://www.xsede.org">XSEDE User portal</a> with your XSEDE username and password
 * Problems with the XSEDE portal can be addressed by emailing help@xsede.org
-* Authenticate to the Horizon dashboard in the TACC domain using your 
-<b>TACC username and password</b>
-* Problems with TACC credentials can be addressed at the 
-<a href="https://portal.tacc.utexas.edu/password-reset/-/password/request-reset">
-TACC User Portal
-</a>
+* Authenticate to the Horizon dashboard in the TACC domain using your <b>TACC username and password</b>
+* Problems with TACC credentials can be addressed at the <a href="https://portal.tacc.utexas.edu/password-reset/-/password/request-reset">TACC User Portal</a>
 
 ## openrc.sh
 
@@ -114,6 +106,7 @@ You can also have the Horizon dashboard create an openrc.sh file for you.
 * This script will interactively prompt for the password when it is sourced.
 This is much safer then keeping your password into a file.
 
+### Our first OpenStack command
 
 Now try a simple command to see if things are working
 
@@ -125,15 +118,16 @@ openstack image list
 
 ### Command structure
 
-* openstack NOUN VERB PARAMETER
-* openstack <b>help</b> [NOUN [VERB [PARAMETER]]]
-* openstack NOUN VERB <b>-h</b>    will also produce the help documentation
-* common NOUNs include image, server, volume, network, subnet, router, port, etc.
-* common verbs are list, show, create, delete, etc.  
-* two commonly used verbs are "list" and "show"
-* list will show everything that your project is allowed to view
-* show takes a name or UUID and shows the details of the specified entity 
+* <tt>openstack NOUN VERB PARAMETERS</tt>
+* <tt>openstack <b>help</b> [NOUN [VERB [PARAMETER]]]</tt>
+* <tt>openstack NOUN VERB <b>-h</b></tt>    will also produce the help documentation
+* Common NOUNs include <tt>image, server, volume, network, subnet, router, port,<tt> etc.
+* Common verbs are <tt>list, show, set, create, delete,</tt> etc.  
+* Two commonly used verbs are <tt>list</tt> and <tt>show</tt>
+* <tt>list</tt> will show everything that your project is allowed to view
+* <tt>show</tt> takes a name or UUID and shows the details of the specified entity 
 
+E.g.
 
 ```
 openstack image list
@@ -142,10 +136,7 @@ openstack image show 21c904b7-b7b0-4f30-bb99-09aa2412bc3c
 ```
 
 ### Names verses UUIDs
-* names and 
-<a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">
-Universally Unique Identifier (UUID)
-</a>
+* names and <a href="https://en.wikipedia.org/wiki/Universally_unique_identifier">Universally Unique Identifier (UUID)</a>
 are interchangeable on the command line
 
 * <b>IMPORTANT POINT TO NOTE:</b> OpenStack will let you name two or more entities with 
@@ -153,12 +144,9 @@ the same names.  If you run into problems controlling something via its name, th
 fall back to the UUID of the entity.
 * Once you have two entities with the same name, your only recourse is to use the UUID
 
-## Creating the infrastructure and booting your first instance
+# Creating the cyberinfrastructure and booting your first instance
 
-We will be following the short tutorial on the Jetstream documentation Wiki
-<a href="https://iujetstream.atlassian.net/wiki/display/JWT/OpenStack+command+line">
-https://iujetstream.atlassian.net/wiki/display/JWT/OpenStack+command+line
-</a>
+We will be following the short tutorial on the Jetstream documentation Wiki<a href="https://iujetstream.atlassian.net/wiki/display/JWT/OpenStack+command+line">https://iujetstream.atlassian.net/wiki/display/JWT/OpenStack+command+line</a>
 
 It is informative  to follow what's happening in the Horizon dashboard as you execute commands.
 Keep in mind that in OpenStack everything is project based.  More than likely, everyone in 
@@ -200,7 +188,7 @@ than one instance, this rule allows for comminications amonst all those instance
 ```
 openstack security group rule create --protocol tcp --dst-port 1:65535 --remote-ip 0.0.0.0/0 ${OS_USERNAME}-global-ssh
 
-A better (more restrictive) example might be
+A better (more restrictive) example might be:
 
 openstack security group rule create --protocol tcp --dst-port 1:65535 --remote-ip 10.X.Y.0/24 ${OS_USERNAME}-global-ssh
 
