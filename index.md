@@ -10,8 +10,8 @@ Participants should bring their laptops and plan to participate actively. Laptop
 ## Instructors: 
 ### Joe Stubbs, Charlie Dey, Greg Zynda, George Turner
 
-## Etherpad
-
+## Links
+[Networking List](https://docs.google.com/spreadsheets/d/1pwBpYy1o8cKTat4wAzX6BJBd7Zh1tcQnsCvBtB1hf4k/edit?usp=sharing)
 
 ## Topic Index
 
