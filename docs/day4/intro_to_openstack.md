@@ -15,6 +15,11 @@ instances to OpenStack entities; e.g.
 <a href="https://docs.openstack.org/python-openstackclient/latest/cli/command-objects/network.html">networks</a>,
 etc.
 
+It is important to note that you should be using the latest version of the OpenStack 
+clients.  <b>This tutorial was developed with openstack --version = openstack 3.8.1</b>
+If your commands are failing, a likely cause would be outdated clients.  The old, 
+outdated project commands have been included if all else fails. 
+
 # Some background getting started Jetstream Documentation
 
 ### Getting started with the Jetstream's OpenStack API
@@ -436,6 +441,10 @@ Old command: the shelve concept did not exist before the openstack command came 
 
 
 ### Dismantling what we have built
+
+Note that infrastructure such as networks, routers, subnets, etc. only need to be 
+created once and are usable by all members of the project.  These steps are included
+for completeness.  And, to clean up for the next class. 
 
 Remove the IP from the instance
 
