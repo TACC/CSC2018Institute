@@ -4,8 +4,10 @@ Instructors:
   * Joe Stubbs - Research Associate, Team Lead for the Cloud and Interactive Computing group
   * Charlie Dey - Research Engineering Scientist Associate, Training and Education Specialist.
   * Greg Zynda - Research Associate, Life Sciences Computing.
-  * George Turner - Research Computing Architect, Indiana University.
   * Josue Coronel - Portal Developer, Web and Mobile Applications.
+  * Cody Hammock - Devops Engineer, Chameleon project technical lead
+  * Mike Packard - Devops Engineer, Jetstream project technical lead
+  * Julia Looney - Python Engineer, Cloud and Interactive Computing group
 
 
 ### What is the Texas Advanced Computing Center?
