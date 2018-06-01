@@ -1,6 +1,7 @@
 ### Introductions
 
 Instructors:
+
   * Joe Stubbs - Research Associate, Team Lead for the Cloud and Interactive Computing group
   * Charlie Dey - Research Engineering Scientist Associate, Training and Education Specialist.
   * Greg Zynda - Research Associate, Life Sciences Computing.
