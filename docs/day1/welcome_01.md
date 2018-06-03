@@ -8,7 +8,7 @@ Mac / Linux:
 
 ```
   'Terminal' application
-  Chrome/Firefox web browser
+  Web browser (Safari/Firefox/Chrome)
 ```
 
 Windows:
@@ -16,10 +16,10 @@ Windows:
 ```
   'PuTTY' application
   'WinSCP application
-  Chrome/Firefox web browser
+  Web browser (Firefox/Chrome)
 ```
 
-You will also need a TACC account and to be added to our Training allocation on JetStream for launching Virtual Machines. 
+You should each have a page with training account login information. 
 
 
 ### Objectives for the Computational Science in the Cloud Summer Institute
