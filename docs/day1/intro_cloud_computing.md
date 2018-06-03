@@ -52,8 +52,9 @@ Key concepts:
 <center><img src="../../resources/jetstream_horizon_projects.png" style="height:300px;"></center>
 4. Select Access & Security -> Key Pairs -> Create Key Pair. Give your key a name and click "Create Key Pair". When prompted, download the key file to your local desktop or click the Download link.
 5. Instances -> Launch Instance.
-  * Details: give your instance a name and click Next (Don't click launch instance)
-  * Source: Enter JS-API-Featured-Ubuntu14-Feb-23-2017 in the search and click the plus (+) to select that image.
+  * Details: Name your instance something like your_name01 and click Next (Don't click launch instance)
+  * Source: Click the "No" under "Create New Volume"
+  * Source: Enter JS-API-Featured-Ubuntu16-May-11-2018 in the search and click the plus (+) to select that image.
   * Flavor: Click the plus next to m1.medium
   * Networks: Choose the TG-TRA170023-subnet by clicking plus.
   * (Skip Network Ports by clicking next)
