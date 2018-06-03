@@ -149,8 +149,6 @@ Writing default config to: /home/ubuntu/.jupyter/jupyter_notebook_config.py
 
 2. Create a password for jupyter:
 ```
-$ jupyter notebook --generate-config
-Writing default config to: /home/ubuntu/.jupyter/jupyter_notebook_config.py
 ubuntu@test-jfs1:~$ jupyter notebook password
 Enter password: 
 Verify password: 
@@ -174,7 +172,17 @@ anaconda3                        dir1  mycert.pem  test
 Anaconda3-4.4.0-Linux-x86_64.sh  dir2  mykey.key
 ```
 
-4. Use vi to modify the /home/ubuntu/.jupyter/jupyter_notebook_config.py with the following changes (note you will first need to open the `/home/ubuntu/.jupyter/jupyter_notebook_config.json` to get the password hash):
+4. Get the password hash from your notebook config:
+```
+$ cat /home/ubuntu/.jupyter/jupyter_notebook_config.json
+{
+  "NotebookApp": {
+    "password": "sha1:c8526f191..."
+  }
+```
+
+And then use vi to modify the /home/ubuntu/.jupyter/jupyter_notebook_config.py with the following changes:
+
 ```
 c.NotebookApp.certfile = '/home/ubuntu/mycert.pem'
 c.NotebookApp.keyfile = '/home/ubuntu/mykey.key'
