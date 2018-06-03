@@ -8,7 +8,7 @@ Mac / Linux:
 
 ```
   'Terminal' application
-  Web browser (Safari/Firefox/Chrome)
+  Web browser (Firefox/Chrome)
 ```
 
 Windows:
