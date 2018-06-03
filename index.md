@@ -11,7 +11,9 @@ Participants should bring their laptops and plan to participate actively. Laptop
 ### Joe Stubbs, Charlie Dey, Greg Zynda, Cody Hammock, Julia Looney, Mike Packard
 
 ## Links
-[Networking List](https://docs.google.com/spreadsheets/d/1pwBpYy1o8cKTat4wAzX6BJBd7Zh1tcQnsCvBtB1hf4k/edit?usp=sharing)
+[TACC User Portal] (https://portal.tacc.utexas.edu)
+[Jetstream Project] (https://jetstream-cloud.org)
+[Chameleon Project] (https://www.chameleoncloud.org)
 
 ## Topic Index
 
