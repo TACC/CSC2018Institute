@@ -8,7 +8,7 @@ Spend a week with TACC's web and cloud computing experts learning about tools, t
 Participants should bring their laptops and plan to participate actively. Laptops will require a terminal application for accessing compute resources.
 
 ## Instructors: 
-### Joe Stubbs, Charlie Dey, Greg Zynda, George Turner
+### Joe Stubbs, Charlie Dey, Greg Zynda, Cody Hammock, Julia Looney, Mike Packard
 
 ## Links
 [Networking List](https://docs.google.com/spreadsheets/d/1pwBpYy1o8cKTat4wAzX6BJBd7Zh1tcQnsCvBtB1hf4k/edit?usp=sharing)
