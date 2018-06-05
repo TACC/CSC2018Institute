@@ -25,20 +25,23 @@ This should spin up 3 instances for you. Once the first instance is spawned and 
 Next, you will need to copy your SSH key to your first instance. On Mac/Unix you can use the `scp` utility:
 
 ```
-$ scp -i <your_key> <your_key> root@<ip>:~/.ssh/id_rsa
+$ scp -i <your_key> <your_key> root@<ip>:~
 ```
 
 On Windows, use `WinSCP`. Make sure the key is copied into a file on the destination called `/root/.ssh/id_rsa`
 
 Aside: SSH keys work like real-world padlocks and keys, except you pass out as many padlocks as you want and keep the one private key to yourself. So you can give another person (or computer) the padlock for them to install on a door (or computer) and you will be the only one who can get in, because you're the only one with the key.
 
-Once your key is copied to your first instance, make sure you can use it to SSH to your other two instances. To do so, we use our key and the private IP of our other instances.
+Once your key is copied to your first instance, make sure you can use it to SSH to your other two instances. To do so, we use our key and the private IP of our other instance.
 
 ```
-$ ssh -i <key> root@10.10.100.x
+$ hostname
+mpackard03-01
+$ ssh -i <key> root@10.10.100.x 
+# hostname
+mpackard03-02
+# exit
 ```
-
-
 
 
 ## Basic Notions
