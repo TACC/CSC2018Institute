@@ -9,7 +9,7 @@ During the course of this morning's session, we will be reconstructing our Jupyt
  project). This time, we will use a slightly different image. Here are the details to use on the Launch Instance pop-up:
 
   * Details: give your instance a name and put `3` for the Count, and click Next (Don't click launch instance)
-  * Source: Enter `Ubuntu 16.04 Devel and Docker` in the search and click the plus (+) to select the 6/22 image.
+  * Source: Enter `Ubuntu 16.04 Devel and Docker` in the search and click the plus (+) to select the 5/26/18 image.
   * Flavor: Click the plus next to m1.medium
   * Networks: Choose the TG-TRA170023-subnet by clicking plus.
   * (Skip Network Ports by clicking next)
