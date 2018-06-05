@@ -13,7 +13,7 @@ Today, we will focus on Agave's files service, which allows us to interact with 
 ### Working with the Files Service
 
 All actions through the files service are in reference to a specific Agave storage system. One specifies the system one wishes to interact with by providing the system's `id`. We will be exclusively using the storage system we set up for this class.
-> The id for the class storage system is `cic.storage`
+> The id for the class storage system is `csc.2018.storage`
 
 Basic information about the Agave Files service:
   * The base URL for the Files service is https://api.tacc.utexas.edu/files/v2
@@ -27,8 +27,8 @@ Basic information about the Agave Files service:
   * Incorporate the system ID by appending `system/<system_id>` after `listings` or `media`. 
   * Incorporate a path on the remote Agave system by appending it to the end.
   * Examples:
-    * (download) `https://api.tacc.utexas.edu/files/v2/media/system/cic.storage/<remote_path>`
-    * (list) `https://api.tacc.utexas.edu/files/v2/listings/system/cic.storage/<remote_path>`
+    * (download) `https://api.tacc.utexas.edu/files/v2/media/system/csc.2018.storage/<remote_path>`
+    * (list) `https://api.tacc.utexas.edu/files/v2/listings/system/csc.2018.storage/<remote_path>`
 
 
 ```
@@ -36,7 +36,7 @@ Exercise. Use the files service to list the contents of your home directory. You
 
 Exercise. Create a directory called `test` inside your home directory. Explore the response. Note the status returned.
 
-Exercise. List the content of your home directory again and confirm that the directory is there.
+Exercise. List the content of your home directory again and confirm that the `test` directory is there.
 
 Exercise. Create a little text file with some text in it on your JetStream VM and upload it to your home directory on the class storage system. (There are several ways to create the file locally). Explore the response and note the status returned.
 
