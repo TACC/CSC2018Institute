@@ -9,6 +9,7 @@ During the course of this morning's session, we will be reconstructing our Jupyt
  project). This time, we will use a slightly different image. Here are the details to use on the Launch Instance pop-up:
 
   * Details: give your instance a name and put `3` for the Count, and click Next (Don't click launch instance)
+  * Source: Click `No` under `Create New Volume`
   * Source: Enter `Ubuntu 16.04 Devel and Docker` in the search and click the plus (+) to select the 5/26/18 image.
   * Flavor: Click the plus next to m1.medium
   * Networks: Choose the TG-TRA170023-subnet by clicking plus.
@@ -24,12 +25,16 @@ This should spin up 3 instances for you. Once the first instance is spawned and 
 Next, you will need to copy your SSH key to your first instance. On Mac/Unix you can use the `scp` utility:
 
 ```
-$ scp -i <your_key> <your_key> root@<ip>
+$ scp -i <your_key> <your_key> root@<ip>:~/.ssh/id_rsa
 ```
 
-On Windows, use `WinSCP`
+On Windows, use `WinSCP`. Make sure the key is copied into a file on the destination called `/root/.ssh/id_rsa`
 
-Lastly, once your key is copied to your first instance, make sure you can use it to SSH to your other two instances. To do so, we use our key and the private IP of our other instances.
+This allows you to bounce 
+
+Aside: SSH keys work like real-world padlocks and keys, except you pass out as many padlocks as you want and keep the one private key to yourself. So you can give another person (or computer) the padlock for them to install on a door (or computer) and you will be the only one who can get in, because you're the only one with the key.
+
+Once your key is copied to your first instance, make sure you can use it to SSH to your other two instances. To do so, we use our key and the private IP of our other instances.
 
 ```
 $ ssh -i <key> root@10.10.100.x
