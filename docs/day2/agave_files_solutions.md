@@ -1,12 +1,12 @@
 # Solutions to the Agave files exercises
 
-0. set up the environment
+0. Set up the environment
 ```
 $ export base=https://api.tacc.utexas.edu
 $ export tok=<your_oauth_token>
 ```
 
-1. list contents of home directory
+1. List contents of home directory
 ```
 $ curl -H "Authorization: Bearer $tok" $base/files/v2/listings/system/csc.2018.storage/<username>
 ```
@@ -59,7 +59,7 @@ Example API response:
 }
 ```
 
-4. download the text file, redirect stdout to a text file
+4. Download the text file, redirect stdout to a text file
 ```
 $ curl -H "Authorization: Bearer $tok" $base/files/v2/media/system/csc.2018.storage/apitest/test1/test.txt > test.txt
 ```
