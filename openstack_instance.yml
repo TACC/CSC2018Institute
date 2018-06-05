@@ -1,0 +1,32 @@
+---
+- hosts: master
+
+  vars_prompt:
+    - name: "ospassword"
+      prompt: "What is your Openstack Password?"
+
+  tasks:
+  - name: install packages
+    apt: name={{item}} state=installed
+    with_items:
+      - python-shade
+
+  - name: Create a new instance and attaches to a network and passes metadata to the instance
+    os_server:
+      state: present
+      name: instance_name##
+      image: 735696ba-8130-4abb-934d-39b7dff73039
+      key_name: mpackard02
+      timeout: 200
+      flavor: 2
+      security_groups: default
+      floating_ip_pools: public
+      network: TG-TRA170023-net 
+      cloud: jetstream
+      auth: 
+        auth_url: https://tacc.jetstream-cloud.org:5000/v3
+        username: tgxxxxxx
+        project_name: TG-TRA170023
+        project_domain_name: tacc
+        user_domain_name: tacc
+        password: "{{ ospassword }}"
