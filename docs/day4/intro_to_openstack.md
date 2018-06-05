@@ -73,7 +73,7 @@ export OS_USER_DOMAIN_NAME=tacc
 
 # the specific project and user accessing the API
 export OS_PROJECT_NAME=TG-TRA170023
-export OS_USERNAME=tg455608
+export OS_USERNAME=tgxxxxxx
 export OS_PASSWORD=”xxxxxxx"
 
 # endpoint information; i.e. which cloud
@@ -136,8 +136,8 @@ E.g.
 
 ```
 openstack image list
-openstack image show JS-API-Featured-CentOS6-Feb-10-2017
-openstack image show 21c904b7-b7b0-4f30-bb99-09aa2412bc3c
+openstack image show JS-API-Featured-CentOS7-May-11-2018
+openstack image show bd0a7a4c-bb4c-483a-9047-0294381b3efd
 ```
 
 ### Names verses UUIDs

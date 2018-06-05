@@ -34,7 +34,7 @@ ADD test.txt /root/text.txt
 ```
 
 A complete Dockerfile for the class Anaconda/Jupyter Notebook server is availble in the class repository:
-https://github.com/TACC/CSC2017Institute/blob/master/docker/Dockerfile
+https://github.com/TACC/CSC2018Institute/blob/master/docker/Dockerfile
 
 #### Building the Image
 To build an image from a docker file we use the `docker build` command. We use the `-t` flag to tag the image: that is, give our image a name. We also need to specify the working directory for the buid. We specify the current working directory using a dot (.) character:

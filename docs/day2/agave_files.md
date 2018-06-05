@@ -74,7 +74,7 @@ Open up the authorized_keys file in an editor and be sure to use the precise fil
 Next, download the storage template file from the class github site:
 
 ```
-$ wget https://raw.githubusercontent.com/TACC/CSC2017Institute/master/docs/day2/vm_storage_system_template.json -O system.json
+$ wget https://raw.githubusercontent.com/TACC/CSC2018Institute/master/docs/day2/vm_storage_system_template.json -O system.json
 ```
 
 Open up a Python notebook and read your public and private keys into a string object and write print them:
