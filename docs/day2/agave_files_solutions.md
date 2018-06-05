@@ -1,23 +1,27 @@
-# set up the environment
-export base=https://api.tacc.utexas.edu
-export tok=<your_token>
+# Solutions to the Agave files exercises
 
-# add permission
-ag.files.updatePermissions(systemId='csc.2018.storage', filePath=users[11], body={'username': 'apitest', 'permission': 'WRITE', 'recursive': True})
+0. set up the environment
+```
+$ export base=https://api.tacc.utexas.edu
+$ export tok=<your_oauth_token>
+```
 
-# list permissions
-ag.files.listPermissions(systemId='csc.2018.storage', filePath=users[i])
+1. list contents of home directory
+```
+$ curl -H "Authorization: Bearer $tok" $base/files/v2/listings/system/csc.2018.storage/<username>
+```
 
-# list contents
-curl -H "Authorization: Bearer $tok" $base/files/v2/listings/system/csc.2018.storage/<username>
+2. Create a directory within home directory
+```
+$ curl -X PUT -d "action=mkdir&path=test" -H "Authorization: Bearer $tok" $base/files/v2/media/system/csc.2018.storage/<username>
+```
 
-# create a directory
-curl -X PUT -d "action=mkdir&path=test" -H "Authorization: Bearer $tok" $base/files/v2/media/system/csc.2018.storage/<username>
+3. Upload a text file to the test directory
+```
+$ curl -F "fileToUpload=@path/to/test.txt" -H "Authorization: Bearer $tok" $base/files/v2/media/system/csc.2018.storage/<username>/test
+```
 
-# upload a text file
-curl -F "fileToUpload=@path/to/test.txt" -H "Authorization: Bearer $tok" $base/files/v2/media/system/csc.2018.storage/<username>/test
-
-Example response:
+Example API response:
 ```
 {  
    "status":"success",
@@ -55,5 +59,7 @@ Example response:
 }
 ```
 
-# download the text file, redirect stdout to a text file
-curl -H "Authorization: Bearer $tok" $base/files/v2/media/system/csc.2018.storage/apitest/test1/test.txt > test.txt
+4. download the text file, redirect stdout to a text file
+```
+$ curl -H "Authorization: Bearer $tok" $base/files/v2/media/system/csc.2018.storage/apitest/test1/test.txt > test.txt
+```
