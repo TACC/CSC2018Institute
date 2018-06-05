@@ -5,7 +5,8 @@ Suppose we wanted to provide a few of our colleagues with an identical Jupyter e
 
 ### New VMs
 
-During the course of this morning's session, we will be reconstructing our Jupyter VM from scratch. Before we begin, start up three new VMs using the Horizon interface (https://tacc.jetstream-cloud.org). This time, we will use a slightly different image. Here are the details to use on the Launch Instance pop-up:
+During the course of this morning's session, we will be reconstructing our Jupyter VM from scratch. Before we begin, start up three new VMs using the Horizon interface (https://tacc.jetstream-cloud.org -- Ensure you're on the TG-TRA170023
+ project). This time, we will use a slightly different image. Here are the details to use on the Launch Instance pop-up:
 
   * Details: give your instance a name and put `3` for the Count, and click Next (Don't click launch instance)
   * Source: Enter `Ubuntu 16.04 Devel and Docker` in the search and click the plus (+) to select the 6/22 image.
