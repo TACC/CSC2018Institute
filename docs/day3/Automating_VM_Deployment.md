@@ -243,13 +243,13 @@ Then you could have two playbooks:
     * `engineering` role
 
 
-### Checking Out and Running the Final Solution
+### Checking Out and Running the Full Solution
 The complete solution is available from the project git repository. Use the `git clone` command to copy the files to your VM:
 
 ```
-$ git clone https://github.com/TACC/CSC2017Institute.git
+$ git clone https://github.com/TACC/CSC2018Institute.git
 ```
-This should have created a directory called `CSC2017Institute` in the current working directory. 
+This should have created a directory called `CSC2018Institute` in the current working directory. 
 
 The playbook also requires some small changes to your hosts files. 
 First, put the hosts in the `master` group by adding
@@ -270,7 +270,7 @@ jpassword=your_password
 Once your hosts file is updated, run the playbook with the command:
 
 ```
-$ ansible-playbook -i hosts CSC2017Institute/jupyter.yml
+$ ansible-playbook -i hosts CSC2018Institute/jupyter.yml
 ```
 
 If all goes well you should see messages similar to:
