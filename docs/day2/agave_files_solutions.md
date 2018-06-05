@@ -33,14 +33,14 @@ Example API response:
       "owner":"apitest",
       "internalUsername":null,
       "lastModified":"2018-06-04T20:23:56.926-05:00",
-      "source":"http://129.114.97.130/pip-selfcheck.json",
+      "source":"http://129.114.97.130/test.txt",
       "path":"apitest/test1/test.txt",
       "status":"STAGING_QUEUED",
       "systemId":"csc.2018.storage",
       "nativeFormat":"raw",
       "_links":{  
          "self":{  
-            "href":"https://api.tacc.utexas.edu/files/v2/media/system/csc.2018.storage//apitest/test1/pip-selfcheck.json"
+            "href":"https://api.tacc.utexas.edu/files/v2/media/system/csc.2018.storage//apitest/test1/test.txt"
          },
          "system":{  
             "href":"https://api.tacc.utexas.edu/systems/v2/csc.2018.storage"
