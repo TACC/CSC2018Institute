@@ -51,7 +51,7 @@ Participants should bring their laptops and plan to participate actively. Laptop
 | 11:45 - 13:00 | Lunch |
 | 13:00 - 14:30 | [Introduction to Ansible](docs/day3/Intro_To_Ansible.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Automating VM Deployment](docs/day3/Automating_VM_Deployment.md) |
+| 14:45 - 16:15 | [Automating Jupyter Deployment](docs/day3/Automating_VM_Deployment.md) and bonus [Automating Openstack Instances](docs/day3/Automate_Openstack_Instance.md) |
 
 ### Thursday
 
