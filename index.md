@@ -64,15 +64,15 @@ Participants should bring their laptops and plan to participate actively. Laptop
 | 11:45 - 13:00 | Lunch |
 | 13:00 - 14:30 | [Introduction to Docker](docs/day4/intro_to_docker.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Introduction to Singularity](docs/day4/singularity.md) and [Analyzing Large CSVs with Dask Distributed Pt 1](docs/day4/large_csvs_1.md) and [Analyzing Large CSVs with Dask Distributed Pt 2](docs/day4/large_csvs_2.md) |
+| 14:45 - 16:15 |  |
 
 ### Friday
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Additional Topics](docs/extra_topics.md) & [Survey](https://goo.gl/forms/sI5pKxDTm8KFIdur2) |
+|  8:30 - 10:00 | [Introduction to Singularity](docs/day4/singularity.md) and [Analyzing Large CSVs with Dask Distributed Pt 1](docs/day4/large_csvs_1.md) and [Analyzing Large CSVs with Dask Distributed Pt 2](docs/day4/large_csvs_2.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | Open Discussion |
+| 10:15 - 11:45 | [Additional Topics](docs/extra_topics.md), [Survey](https://goo.gl/forms/sI5pKxDTm8KFIdur2), and Open Discussion |
 | 11:45 - 13:00 | Lunch & Closing |
 
 
