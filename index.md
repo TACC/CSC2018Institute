@@ -60,7 +60,7 @@ Participants should bring their laptops and plan to participate actively. Laptop
 |--------|--------------------------------------------------|
 |  8:30 - 10:00 | [Introduction to OpenStack CLI](docs/day4/intro_to_openstack.md) |
 | 10:00 - 10:15 | Break |
-| 10:15 - 11:45 | [Deploying a Cluster on JetStream](docs/day4/openstack_cluster.md) |
+| 10:15 - 11:45 | [Automate Openstack Instance deployment with Ansible](docs/day4/Automate_Openstack_Instance.md) |
 | 11:45 - 13:00 | Lunch |
 | 13:00 - 14:30 | [Introduction to Docker](docs/day4/intro_to_docker.md) |
 | 14:30 - 14:45 | Break |
