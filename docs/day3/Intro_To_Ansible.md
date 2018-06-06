@@ -70,8 +70,8 @@ Here is an example hosts file with three hosts, two in the "web" group and one i
 master ansible_ssh_host=10.10.100.10 ansible_ssh_private_key_file=~/web.key ansible_ssh_user=root
 
 [compute]
-compute1 ansible_ssh_host=10.10.100.11 ansible_ssh_private_key_file=~/db.key ansible_ssh_user=centos
-compute2 ansible_ssh_host=10.10.100.12 ansible_ssh_private_key_file=~/web.key ansible_ssh_user=ubuntu
+compute1 ansible_ssh_host=10.10.100.11 ansible_ssh_private_key_file=~/db.key ansible_ssh_user=root
+compute2 ansible_ssh_host=10.10.100.12 ansible_ssh_private_key_file=~/web.key ansible_ssh_user=root
 
 ```
 
