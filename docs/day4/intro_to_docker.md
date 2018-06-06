@@ -1,6 +1,6 @@
 # Intro to Docker
 
-Intro slides: https://docs.google.com/presentation/d/1djCYBhKmbDo9L_GZHaarZVUbyrQerPCTctoOAZEVrWk/edit#slide=id.g3c300aa957_0_6
+Intro slides: https://docs.google.com/presentation/d/1djCYBhKmbDo9L_GZHaarZVUbyrQerPCTctoOAZEVrWk/edit#slide=id.p
 
 ### Initial setup
 Typically, accessing the docker daemon requires root or to be in the docker group. For the purposes of this introduction,
