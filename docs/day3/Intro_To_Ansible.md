@@ -66,12 +66,12 @@ Ansible has the notion of a hosts or inventory file. This is a plain text file t
 Here is an example hosts file with three hosts, two in the "web" group and one in the "databases" group.
 
 ```
-[web]
-web_1 ansible_ssh_host=129.114.18.27 ansible_ssh_private_key_file=~/web.key ansible_ssh_user=ubuntu
-web_2 ansible_ssh_host=129.114.18.28 ansible_ssh_private_key_file=~/web.key ansible_ssh_user=ubuntu
+[master]
+master ansible_ssh_host=10.10.100.10 ansible_ssh_private_key_file=~/web.key ansible_ssh_user=root
 
-[databases]
-mysql ansible_ssh_host=129.114.19.33 ansible_ssh_private_key_file=~/db.key ansible_ssh_user=centos
+[compute]
+compute1 ansible_ssh_host=10.10.100.11 ansible_ssh_private_key_file=~/db.key ansible_ssh_user=centos
+compute2 ansible_ssh_host=10.10.100.12 ansible_ssh_private_key_file=~/web.key ansible_ssh_user=ubuntu
 
 ```
 
