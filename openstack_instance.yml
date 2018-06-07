@@ -22,7 +22,6 @@
       security_groups: default
       floating_ip_pools: public
       network: TG-TRA170023-net 
-      cloud: jetstream
       auth: 
         auth_url: https://tacc.jetstream-cloud.org:5000/v3
         username: tgxxxxxx
