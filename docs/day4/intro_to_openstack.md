@@ -79,7 +79,6 @@ export OS_PASSWORD=”xxxxxxx"
 # endpoint information; i.e. which cloud
 export OS_IDENTITY_API_VERSION=3
 export OS_AUTH_URL=https://tacc.jetstream-cloud.org:5000/v3
-#export OS_AUTH_URL=https://iu.jetstream-cloud.org:35357/v3
 ```
 
 To set the environment variables, source the openrc.sh file.
