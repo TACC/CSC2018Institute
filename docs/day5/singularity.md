@@ -196,7 +196,7 @@ My top-level image
 - Source - https://github.com/zyndagj/tacc-base
 - Docker Hub - https://hub.docker.com/r/gzynda/tacc-base/
 
-starts from Ubuntu 18.04 LTS and includes
+starts `FROM` Ubuntu 18.04 LTS and includes
 
 - mounts for every filesystem at TACC
 - a `docker-clean` utility for deleting temporary files
@@ -221,234 +221,110 @@ Singularity was designed to support HPC applications, so it naturally supports M
 
 The general rule is that you want the version of MPI inside the container to be the same version or newer than the host. You may be thinking that this is not good for the portability of your container, and you are right. Containerizing MPI applications is not terribly difficult with Singularity, but it comes at the cost of additional requirements for the host system.
 
-I reduce the burdeon on developers by having system-specific containers with MPI stacks pre-installed. For example, my
+I reduce the burdeon on developers by having system-specific containers with MPI stacks pre-installed. For the Maverick supercomputer, my image
 
-[Runscript Documentation](http://singularity.lbl.gov/docs-run#defining-the-runscript)
-### Your first container
+- Source - https://github.com/zyndagj/tacc-maverick-cuda8
+- Docker Hub - https://hub.docker.com/r/gzynda/tacc-maverick-cuda8/
 
-Create an empty 1024 MB image and format it as an ext3 filesystem.
+starts `FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04` to include the correct cuda stack, and then immediately replicates `gzynda/tacc-base`.
 
-```
-singularity create -s 1024 myimage.img
-```
+> This image would have ideally started from `gzynda/tacc-base`
 
-## Import an operating system
+Then, the image installs
 
-We are running ubuntu on our Jetstream instances, so lets import a centos system.
+- infiniband libraries
+- mvapich2-2.2 (matches host)
+- gcc toolchain (build-essential)
 
-```
-singularity import myimage.img docker://centos:latest
-```
+It also compiles the test program `hellow` to test MPI.
 
-## Enter the container
-
-We can enter the container and launch a shell with
+While you may think you should invoke MPI from in the container, and you can, you actually need to call it from the outside. You can test the MPI functionality of this container **on Maverick** as follows
 
 ```
-singularity shell myimage.img
+# Start a compute job
+idev -N 2 -n 40
+
+# Pull the image
+module load tacc-singularity cuda/8.0
+singularity pull docker://gzynda/tacc-maverick-cuda8:latest
+
+# Run hellow
+ibrun -np 40 singularity exec tacc-maverick-cuda8-latest.img hellow
 ```
 
-You can then interact with the container as you would a normal CLI. Exit your container, and lets do a couple sanity checks.
+### GPUs
 
-#### From Jetstream instance
+For the same reasons as with MPI Fabric devices, GPU computing with Singularity works if the host and container libraries match. The
 
-```
-[jetstream]$ whoami
-[jetstream]$ cat /etc/*release
-```
-#### From Singularity shell
+- `gzynda/tacc-maverick-cuda8`
 
-```
-[jetstream]$ singularity shell myimage.img
-[singularity]$ whoami
-[singularity]$ cat /etc/*release
-```
+image serves as a decent starting point, since it contains the correct libraries, but most of Maverick's time lately is running Tensorflow for Machine learning, so I created
 
-## Running Commands
+- Source - https://github.com/zyndagj/tacc-maverick-ml
+- Docker Hub - https://hub.docker.com/r/gzynda/tacc-maverick-ml/
 
-You can also run commands in the container without entering it.
+which contains
 
-```
-[jetstream]$ singularity exec myimage.img cat /etc/*release
-```
+- tensorflow v1.6.0
+- keras
+- pytorch
+- anaconda python 3
 
-While this location is inside your container, your $HOME directory gets passed into the container automatically.
+You can test the functionality as follows
 
 ```
-[jetstream]$ echo "OUTSIDE CONTAINER" > ~/test.txt
-[jetstream]$ singularity exec myimage.img cat $HOME/test.txt
+# Land on a compute node
+idev -m 60
+
+# Load Singularity
+module load tacc-singularity
+
+# Change to your $WORK directory
+cd $WORK
+
+#Get the software
+git clone https://github.com/tensorflow/models.git
+
+# Pull the image
+singularity pull docker://gzynda/tacc-maverick-ml:latest
+
+# Is the GPU detected?
+singularity exec --nv tacc-maverick-ml-latest.img python -c "import tensorflow as tf; tf.test.is_gpu_available()"
+
+# Run the code
+singularity exec --nv tacc-maverick-ml-latest.img python $WORK/models/tutorials/image/mnist/convolutional.py
 ```
 
-## Modifying a container
+## Additional Resources
 
-By default, you cannot modify an image
+### Community Containers
 
-```
-[jetstream]$ singularity shell myimage.img
-[singularity]$ touch /test.file
-```
+[Docker Hub](https://hub.docker.com/) - Just remember to add mount points
 
-You can only modify a container with sudo, and specifying that you want to mount the container as writeable.
+[Biocontainers](https://github.com/BioContainers) - Bioinformatics containers
 
-```
-[jetstream]$ sudo singularity shell --writeable myimage.img
-[singularity]$ touch /test.file
-[singularity]$ exit
-[jetstream]$ singularity exec myimage.img ls /
-```
+[Singularity Hub](https://singularity-hub.org/) - Singularity version of docker hub (does not work at TACC)
 
-## Passing in filesystems
+### Singularity Related Resources
 
-In normal versions of Singularity, you can specify which folders get mounted in a container when it is run. At TACC, we specifically limit that to our shared filesystems as a security precaution. This means you will need to always add
+[Singularity Homepage](http://singularity.lbl.gov/)
 
-- /corral
-- /home1
-- /work
-- /scratch
+[Singularity Hub](https://www.singularity-hub.org/)
 
-folders in your containers if you wish to interact with them like you did your `$HOME` folder.
+[University of Arizona Singularity Tutorials](https://docs.hpc.arizona.edu/display/UAHPC/Singularity+Tutorials)
 
-## Community containers
+[NIH HPC](https://hpc.nih.gov/apps/singularity.html)
 
-We already know about pulling images like centos directly from docker, but there are whole communities like biocontainers for bioinformatics and singularity hub to deliver software. Lets try pulling qiime from biocontainers since it has a complicated install process.
+[Dolmades - Windows Apps in Linux Docker-Singularity Containers](http://dolmades.org) *Warning not tested*
 
-```
-[jetstream]$ singularity pull --size 2048 docker://quay.io/biocontainers/qiime:1.9.1--np112py27_1
-[jetstream]$ singularity exec qiime-1.9.1--np112py27_1.img pick_de_novo_otus.py -h
-```
+### Singularity Talks
 
-Just make sure to
+Gregory Kurtzer, creator of Singularity has provided two good talks online:
 
-```
-[jetstream]$ sudo singularity exec --writable qiime-1.9.1--np112py27_1.img mkdir /{work,scratch,home1,corral}
-```
+[Introduction to Singularity](https://wilsonweb.fnal.gov/slides/hpc-containers-singularity-introductory.pdf)
 
-if you want to run this at TACC. Lets also transfer this image to Stampede2
+[Advanced Singularity](https://www.intel.com/content/dam/www/public/us/en/documents/presentation/hpc-containers-singularity-advanced.pdf>)
 
-```
-[jetstream]$ scp qiime-1.9.1--np112py27_1.img username@stampede2.tacc.utexas.edu:
-```
+Vanessa Sochat, lead developer of Singularity Hub, also has given a great talk on:
 
-## Running containers at TACC
-
-Singularity 2.3.1 is installed on Stampede2, but it can only be run from compute nodes.
-
-```
-[jetstream]$ ssh username@stampede2.tacc.utexas.edu
-[stampede2]$ module load tacc-singularity
-[stampede2]$ singularity -h
-```
-
-You should recieve a warning message because you are currently on a login node.
-
-Login nodes are the nodes that all users land on when they ssh to a TACC system. These are designed to
-
-- Handle network connections
-- Stage data
-- Schedule jobs
-
-To ensure that all users have a responsive experience at TACC, we disabled Singularity on login nodes. This is because your container spawns many processes and utilizes loop devices when mounting the image. Luckily, TACC makes interactive compute sessions fairly accessible.
-
-```
-[jetstream]$ idev -m 30
-[compute]$ singularity -h
-```
-
-You should now be able to run/exec/shell your the qiime container you transferred to Stampede2!
-
-```
-[compute]$ singularity exec qiime-1.9.1--np112py27_1.img pick_de_novo_otus.py -h
-[compute]$ singularity shell qiime-1.9.1--np112py27_1.img
-[singularity]$ ls /work
-[singularity]$ ls /scratch
-```
-
-# Sinularity Bootstrap
-
-Besides pulling pre-built docker images, you can build your own by writing a [definition file](http://singularity.lbl.gov/bootstrap-image) and bootstrapping (building) the image on your own.
-
-A singularity file contains a header, which specifies the manager and base OS to build from.
-
-## Docker header
-
-```
-Bootstrap: docker
-From: ubuntu:latest
-```
-
-## Centos header
-
-```
-BootStrap: yum
-OSVersion: 7
-MirrorURL: http://mirror.centos.org/centos-%{OSVERSION}/%{OSVERSION}/os/$basearch/
-Include: yum
-```
-
-## Definition sections
-
-After you make your header, you just need to write the sections of your container.
-
-- `%setup` - When you need to run commands and copy files into the container before `%post`
-- `%post` - The actual setup commands
-  - Making directories
-  - yum/apt commands
-  - git clone
-  - make
-- `%labels` - Any metadata you want associated with your container
-  - NAME VALUE
-- `%environment` - Environment values that are sources whenever using the container
-  - NAME VALUE
-- `%runscript` - This is what runs when you `singularity run` the container
-  - Prefix the execution command with `exec`
-- `%test` - A test to make sure the container was built correctly
-  - Runs after `%post`
-  - Run anytime using `singularity test`
-
-## Example definition file
-
-```
-BootStrap: docker
-From: fedora:latest
-
-%post
-
-yum -y install samtools BEDTools git
-
-%runscript
-
-echo "Arguments received: $*"
-exec bedtools "$@"
-
-%test
-
-bv=$(bedtools --version)
-if [ "$bv" == "bedtools v2.26.0" ]
-then
-    echo "PASS - $bv found"
-else
-    echo "FAIL - $bv not found"
-fi
-
-%files
-
-%environment
-
-MYVAR=cats
-
-%labels
-
-AUTHOR username
-```
-
-## Bootstrapping
-
-After creating your image, you can bootstrap and run it as follows
-
-```
-singularity create -F -s 1024 bedtools.img
-sudo singularity bootstrap bedtools.img bedtools.def
-singularity test bedtools.img
-singularity run bedtools.img intersect -h
-singularity exec bedtools.img bedtools intersect -h
-```
+[Singularity](https://docs.google.com/presentation/d/14-iKKUpGJC_1qpVFVUyUaitc8xFSw9Rp3v_UE9IGgjM/pub?start=false&loop=false&delayms=3000&slide=id.g1c1cec989b_0_154>)
