@@ -61,6 +61,7 @@ Note that we now have two ways to interact with redis: assuming the Redis contai
 ```
 Exercise. Nginx is a popular http proxy and has an official image available on the Docker Hub. By default, nginx listens for requests on port 80. Create an nginx container and map its port 80 to an external port on your VM's IP.
 Exercise. Use curl to check that you can a) interact with nginx on port 80 using it's container IP and b) interact with nginx on the mapped port using your VM's IP.
+```
 
 ### Building the Jupyter Image ###
 Let's build a Docker image that contains a (nearly) identical software environment to that running in our VM:
@@ -71,7 +72,7 @@ Exercise. Build a new docker image on your VM using this source.
 ```
 
 
-### Running the Jupyter Container
+### Running the Jupyter Container ###
 We need to map the 8887 port so that Jupyter is available from outside the VM. We might also want to mount the current working directory on the host to a data directory to save our files after the container is destroyed.
 
 ```
