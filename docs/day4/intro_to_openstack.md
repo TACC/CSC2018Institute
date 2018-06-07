@@ -17,8 +17,7 @@ etc.
 
 It is important to note that you should be using the latest version of the OpenStack 
 clients.  <b>This tutorial was developed with openstack --version = openstack 3.8.1</b>
-If your commands are failing, a likely cause would be outdated clients.  The old, 
-outdated project commands have been included if all else fails. 
+If your commands are failing, a likely cause would be outdated clients.
 
 # Some background getting started Jetstream Documentation
 
