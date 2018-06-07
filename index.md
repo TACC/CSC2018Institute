@@ -64,7 +64,7 @@ Participants should bring their laptops and plan to participate actively. Laptop
 | 11:45 - 13:00 | Lunch |
 | 13:00 - 14:30 | [Introduction to Docker](docs/day4/intro_to_docker.md) |
 | 14:30 - 14:45 | Break |
-| 14:45 - 16:15 | [Introduction to Docker](docs/day4/intro_to_docker_part2.md) |
+| 14:45 - 16:15 | [Introduction to Docker Part 2](docs/day4/intro_to_docker_part2.md) |
 
 ### Friday
 
