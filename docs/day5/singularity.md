@@ -233,7 +233,7 @@ starts `FROM nvidia/cuda:8.0-cudnn7-devel-ubuntu16.04` to include the correct cu
 Then, the image installs
 
 - infiniband libraries
-- mvapich2-2.2 (matches host)
+- MVAPICH2-2.2 (matches host)
 - gcc toolchain (build-essential)
 
 It also compiles the test program `hellow` to test MPI.
@@ -294,6 +294,10 @@ singularity exec --nv tacc-maverick-ml-latest.img python -c "import tensorflow a
 # Run the code
 singularity exec --nv tacc-maverick-ml-latest.img python $WORK/models/tutorials/image/mnist/convolutional.py
 ```
+
+## Build your own container
+
+Use any leftover time to create your own container, or explore the examples we provided.
 
 ## Additional Resources
 
