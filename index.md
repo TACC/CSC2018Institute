@@ -70,7 +70,7 @@ Participants should bring their laptops and plan to participate actively. Laptop
 
 | Time | Topic |
 |--------|--------------------------------------------------|
-|  8:30 - 10:00 | [Introduction to Singularity](docs/day4/singularity.md) and [Analyzing Large CSVs with Dask Distributed Pt 1](docs/day4/large_csvs_1.md) and [Analyzing Large CSVs with Dask Distributed Pt 2](docs/day4/large_csvs_2.md) |
+|  8:30 - 10:00 | [Introduction to Singularity](docs/day5/singularity.md) and [Analyzing Large CSVs with Dask Distributed Pt 1](docs/day5/large_csvs_1.md) and [Analyzing Large CSVs with Dask Distributed Pt 2](docs/day5/large_csvs_2.md) |
 | 10:00 - 10:15 | Break |
 | 10:15 - 11:45 | [Additional Topics](docs/extra_topics.md), [Survey](https://goo.gl/forms/sI5pKxDTm8KFIdur2), and Open Discussion |
 | 11:45 - 13:00 | Lunch & Closing |
